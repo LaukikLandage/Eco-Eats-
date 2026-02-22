@@ -15,7 +15,7 @@ export default function PublicNavbar() {
         { name: "How It Works", href: "/#features" },
         { name: "About Us", href: "/about" },
         { name: "Our Team", href: "/team" },
-        { name: "Contact", href: "/#contact" },
+        { name: "Contact", href: "/contact" },
     ];
 
     return (

@@ -97,17 +97,6 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* Contact Section */}
-        <section id="contact" className="py-32 px-6">
-          <div className="max-w-xl mx-auto text-center space-y-8">
-            <h2 className="text-4xl font-black text-slate-900">Get in Touch</h2>
-            <p className="text-slate-400 font-medium leading-relaxed">Have questions about bringing EcoEats to your department or university? We're here to help.</p>
-            <div className="bg-white p-2 rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-100 flex items-center gap-2">
-              <input type="email" placeholder="Your email address" className="flex-1 bg-transparent px-6 py-4 outline-none font-medium" />
-              <button className="bg-primary text-white font-bold h-14 px-8 rounded-xl active:scale-95 transition-all">Send</button>
-            </div>
-          </div>
-        </section>
 
         {/* CTA Section */}
         <section className="px-6 py-32 bg-primary flex flex-col items-center text-center text-white relative overflow-hidden m-6 rounded-[3rem]">

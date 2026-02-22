@@ -27,7 +27,7 @@ export default function Footer() {
 
                 <div className="pt-8 border-t border-slate-50 text-center">
                     <p className="text-slate-400 text-[11px] font-bold">
-                        Design and developed by <span className="text-slate-700">Laukik Landage & team EcoEats</span>
+                        Design and developed by <span className="text-slate-700">Laukik Landage & Team EcoEats</span>
                     </p>
                 </div>
             </div>

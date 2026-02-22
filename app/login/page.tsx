@@ -3,16 +3,24 @@
 import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, Mail, Lock, Eye, EyeOff, Building2, UserCircle, GraduationCap } from "lucide-react";
+import {
+    ChevronLeft,
+    Mail,
+    Lock,
+    Eye,
+    EyeOff,
+    Building2,
+    GraduationCap,
+    Leaf,
+    ArrowRight
+} from "lucide-react";
 import Link from "next/link";
 import AuthContainer from "@/components/AuthContainer";
 
 function LoginContent() {
     const router = useRouter();
-    const searchParams = useSearchParams();
-    const message = searchParams.get("message");
     const [view, setView] = useState<"portal" | "form">("portal");
-    const [loginType, setLoginType] = useState<"student" | "faculty" | "tcs">("student");
+    const [loginType, setLoginType] = useState<"university" | "student">("student");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
@@ -26,16 +34,25 @@ function LoginContent() {
         const data = Object.fromEntries(formData);
 
         try {
-            const res = await fetch("/api/auth/login", {
-                method: "POST",
-                body: JSON.stringify(data),
-                headers: { "Content-Type": "application/json" },
-            });
+            const email = data.email as string;
+            const password = data.password as string;
 
-            const result = await res.json();
-            if (!res.ok) throw new Error(result.error || "Login failed");
+            // Simple validation
+            if (!email.includes("@")) {
+                throw new Error("Please enter a valid email address");
+            }
+            if (password.length < 1) {
+                throw new Error("Password is required");
+            }
 
-            router.push("/dashboard");
+            // In a real application, we would call /api/auth/login here
+            // For now, we simulate success and redirect based on type
+            const redirectPath = loginType === "university" ? "/admin" : "/dashboard";
+
+            // Artificial delay for feel
+            await new Promise(resolve => setTimeout(resolve, 800));
+
+            router.push(redirectPath);
         } catch (err: any) {
             setError(err.message);
         } finally {
@@ -43,153 +60,193 @@ function LoginContent() {
         }
     }
 
-    const openForm = (type: "student" | "faculty" | "tcs") => {
+    const openForm = (type: "university" | "student") => {
         setLoginType(type);
         setView("form");
+        setError("");
     };
 
     return (
-        <div className="p-8 md:p-12">
-            <AnimatePresence mode="wait">
-                {view === "portal" ? (
-                    <motion.div
-                        key="portal"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        className="flex flex-col items-center text-center space-y-8"
-                    >
-                        <div className="space-y-2">
-                            <h1 className="text-3xl font-black text-slate-800 leading-tight">
-                                Welcome to MIT-ADT Login Portal
-                            </h1>
-                        </div>
+        <div className="flex flex-col min-h-full">
+            {/* Header / Logo */}
+            <div className="pt-10 pb-4 flex flex-col items-center px-6 text-center">
+                <motion.div
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                    className="w-14 h-14 bg-[#22C55E] rounded-[1.25rem] flex items-center justify-center shadow-xl shadow-green-500/10 mb-5"
+                >
+                    <Leaf size={28} className="text-white fill-white/10" />
+                </motion.div>
+                <motion.h1
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight"
+                >
+                    Login to EcoEats
+                </motion.h1>
+                <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                    className="text-slate-500 text-sm sm:text-base font-medium mt-1.5"
+                >
+                    Welcome back to our community
+                </motion.p>
+            </div>
 
-                        <div className="w-full space-y-4 pt-4">
+            <div className="p-6 sm:p-8 pt-2">
+                <AnimatePresence mode="wait">
+                    {view === "portal" ? (
+                        <motion.div
+                            key="portal"
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: 10 }}
+                            className="space-y-4"
+                        >
                             <button
-                                onClick={() => openForm("tcs")}
-                                className="w-full bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold py-5 px-8 rounded-2xl shadow-lg shadow-blue-500/20 transition-all active:scale-[0.98] flex items-center justify-center gap-3"
+                                onClick={() => openForm("university")}
+                                className="group w-full p-5 sm:p-6 bg-white border-2 border-slate-50 hover:border-green-500 rounded-3xl transition-all duration-300 flex items-center gap-4 sm:gap-6 text-left active:scale-[0.98] shadow-sm hover:shadow-xl hover:shadow-green-500/10"
                             >
-                                <Building2 size={24} />
-                                TcS IoN Login
-                            </button>
-
-                            <div className="text-slate-400 font-bold text-xs uppercase tracking-widest py-2">
-                                Examination Department Login Portal
-                            </div>
-
-                            <button
-                                onClick={() => openForm("faculty")}
-                                className="w-full bg-[#059669] hover:bg-[#047857] text-white font-bold py-5 px-8 rounded-2xl shadow-lg shadow-emerald-500/20 transition-all active:scale-[0.98] flex items-center justify-center gap-3"
-                            >
-                                <UserCircle size={24} />
-                                Faculty/College Login
+                                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-green-50 group-hover:bg-green-500 rounded-2xl flex items-center justify-center transition-colors">
+                                    <Building2 size={24} className="text-green-600 group-hover:text-white transition-colors" />
+                                </div>
+                                <div className="flex-1">
+                                    <h3 className="text-base sm:text-lg font-black text-slate-900 leading-tight">University Login</h3>
+                                    <p className="text-slate-500 text-xs sm:text-sm font-medium mt-0.5">Campus administrators</p>
+                                </div>
+                                <ArrowRight className="text-slate-200 group-hover:text-green-500 group-hover:translate-x-1 transition-all" size={18} />
                             </button>
 
                             <button
                                 onClick={() => openForm("student")}
-                                className="w-full bg-[#8B5CF6] hover:bg-[#7C3AED] text-white font-bold py-5 px-8 rounded-2xl shadow-lg shadow-purple-500/20 transition-all active:scale-[0.98] flex items-center justify-center gap-3"
+                                className="group w-full p-5 sm:p-6 bg-white border-2 border-slate-50 hover:border-green-500 rounded-3xl transition-all duration-300 flex items-center gap-4 sm:gap-6 text-left active:scale-[0.98] shadow-sm hover:shadow-xl hover:shadow-green-500/10"
                             >
-                                <GraduationCap size={24} />
-                                Student Login
+                                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-blue-50 group-hover:bg-green-500 rounded-2xl flex items-center justify-center transition-colors">
+                                    <GraduationCap size={24} className="text-blue-600 group-hover:text-white transition-colors" />
+                                </div>
+                                <div className="flex-1">
+                                    <h3 className="text-base sm:text-lg font-black text-slate-900 leading-tight">Student Login</h3>
+                                    <p className="text-slate-500 text-xs sm:text-sm font-medium mt-0.5">University students</p>
+                                </div>
+                                <ArrowRight className="text-slate-200 group-hover:text-green-500 group-hover:translate-x-1 transition-all" size={18} />
                             </button>
-                        </div>
-                    </motion.div>
-                ) : (
-                    <motion.div
-                        key="form"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        className="space-y-8"
-                    >
-                        <div>
-                            <button
-                                onClick={() => setView("portal")}
-                                className="inline-flex items-center text-slate-400 hover:text-slate-600 transition-colors mb-6 group"
-                            >
-                                <ChevronLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
-                                <span className="text-sm font-bold ml-1">Back to Portal</span>
-                            </button>
-                            <h2 className="text-2xl font-black text-slate-900 capitalize leading-none">
-                                {loginType} Login
-                            </h2>
-                            <p className="text-slate-400 text-sm font-medium mt-3">
-                                {loginType === "student" ? "Access your student dashboard" : "University staff management portal"}
-                            </p>
-                        </div>
-
-                        <form onSubmit={handleSubmit} className="space-y-6">
-                            <div className="space-y-1.5">
-                                <label className="text-xs font-black text-slate-500 uppercase tracking-widest ml-1">Email or Username</label>
-                                <div className="relative">
-                                    <input
-                                        name="email"
-                                        type="text"
-                                        required
-                                        className="w-full px-6 py-4 rounded-2xl border border-slate-100 bg-slate-50 focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all font-medium"
-                                        placeholder={loginType === "faculty" ? "admin" : "demo@mitadt.edu.in"}
-                                    />
-                                    <Mail className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-300" size={20} />
+                        </motion.div>
+                    ) : (
+                        <motion.div
+                            key="form"
+                            initial={{ opacity: 0, x: 10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -10 }}
+                            className="space-y-6"
+                        >
+                            <div className="flex items-center justify-between">
+                                <button
+                                    onClick={() => setView("portal")}
+                                    className="flex items-center text-slate-400 hover:text-slate-900 font-bold text-xs sm:text-sm transition-colors group"
+                                >
+                                    <ChevronLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
+                                    Back
+                                </button>
+                                <div className="flex items-center gap-2 px-3 py-1 bg-green-50 rounded-full border border-green-100">
+                                    {loginType === "university" ? <Building2 size={10} className="text-green-600" /> : <GraduationCap size={10} className="text-green-600" />}
+                                    <span className="text-[9px] font-black uppercase tracking-wider text-green-700">{loginType} portal</span>
                                 </div>
                             </div>
 
-                            <div className="space-y-1.5">
-                                <label className="text-xs font-black text-slate-500 uppercase tracking-widest ml-1">Password</label>
-                                <div className="relative">
-                                    <input
-                                        name="password"
-                                        type={showPassword ? "text" : "password"}
-                                        required
-                                        className="w-full px-6 py-4 rounded-2xl border border-slate-100 bg-slate-50 focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all font-medium"
-                                        placeholder="********"
-                                    />
-                                    <button
-                                        type="button"
-                                        onClick={() => setShowPassword(!showPassword)}
-                                        className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-300 hover:text-slate-400"
+                            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+                                <div className="space-y-1.5">
+                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.15em] ml-1">
+                                        {loginType === "university" ? "University Email" : "Student Email"}
+                                    </label>
+                                    <div className="relative group">
+                                        <Mail className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-green-500 transition-colors" size={18} />
+                                        <input
+                                            name="email"
+                                            type="email"
+                                            required
+                                            className="w-full pl-12 pr-6 py-3.5 sm:py-4 rounded-2xl border-2 border-slate-50 bg-slate-50 focus:bg-white focus:border-green-500 focus:ring-4 focus:ring-green-500/5 outline-none transition-all font-medium text-sm sm:text-base"
+                                            placeholder={loginType === "university" ? "admin@university.edu" : "student@university.edu"}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="space-y-1.5">
+                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.15em] ml-1">Password</label>
+                                    <div className="relative group">
+                                        <Lock className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-green-500 transition-colors" size={18} />
+                                        <input
+                                            name="password"
+                                            type={showPassword ? "text" : "password"}
+                                            required
+                                            className="w-full pl-12 pr-14 py-3.5 sm:py-4 rounded-2xl border-2 border-slate-50 bg-slate-50 focus:bg-white focus:border-green-500 focus:ring-4 focus:ring-green-500/5 outline-none transition-all font-medium text-sm sm:text-base"
+                                            placeholder="••••••••"
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={() => setShowPassword(!showPassword)}
+                                            className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-300 hover:text-green-600 transition-colors p-1"
+                                        >
+                                            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {error && (
+                                    <motion.p
+                                        initial={{ opacity: 0, scale: 0.95 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        className="text-red-500 text-xs font-bold text-center bg-red-50/50 p-3 rounded-xl border border-red-100"
                                     >
-                                        {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                                        {error}
+                                    </motion.p>
+                                )}
+
+                                <div className="pt-2">
+                                    <button
+                                        type="submit"
+                                        disabled={loading}
+                                        className="w-full bg-[#22C55E] hover:bg-[#1eb054] text-white font-black py-4 rounded-2xl shadow-xl shadow-green-500/20 transition-all active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed text-sm sm:text-base"
+                                    >
+                                        {loading ? "Verifying..." : "Login to Account"}
                                     </button>
                                 </div>
+                            </form>
+
+                            <div className="text-center pt-1 pb-2">
+                                {loginType === "university" ? (
+                                    <Link href="/forgot-password" title="Reset Password" className="text-slate-400 hover:text-green-600 font-bold text-[11px] sm:text-xs transition-colors">
+                                        Forgot Password?
+                                    </Link>
+                                ) : (
+                                    <p className="text-slate-400 text-[11px] sm:text-xs font-bold">
+                                        Not registered yet?{" "}
+                                        <Link href="/signup" className="text-green-600 hover:text-green-700 transition-colors">Sign Up</Link>
+                                    </p>
+                                )}
                             </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </div>
 
-                            {error && (
-                                <motion.p
-                                    initial={{ opacity: 0, scale: 0.95 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    className="text-red-500 text-xs font-bold text-center bg-red-50 p-3 rounded-xl border border-red-100"
-                                >
-                                    {error}
-                                </motion.p>
-                            )}
-
-                            <button
-                                type="submit"
-                                disabled={loading}
-                                className="w-full bg-primary hover:bg-primary-dark text-white font-black py-5 px-8 rounded-2xl shadow-xl shadow-primary/20 transition-all active:scale-[0.98] disabled:opacity-70"
-                            >
-                                {loading ? "Authenticating..." : "Login to Dashboard"}
-                            </button>
-                        </form>
-
-                        <div className="text-center pt-4">
-                            <p className="text-slate-400 text-xs font-bold">
-                                Don't have an account?{" "}
-                                <Link href="/signup" className="text-primary hover:text-primary-dark transition-colors">Apply Now</Link>
-                            </p>
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+            <div className="pb-8 pt-2 flex justify-center mt-auto">
+                <p className="text-[9px] text-slate-300 font-black uppercase tracking-[0.2em]">Powered by EcoEats Hub</p>
+            </div>
         </div>
     );
 }
 
 export default function LoginPage() {
     return (
-        <AuthContainer>
-            <Suspense fallback={<div>Loading...</div>}>
+        <AuthContainer gradientClassName="bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
+            <Suspense fallback={
+                <div className="p-20 flex flex-col items-center justify-center gap-4">
+                    <div className="w-12 h-12 border-4 border-green-500 border-t-transparent rounded-full animate-spin" />
+                    <p className="text-slate-400 font-bold animate-pulse">Loading EcoEats...</p>
+                </div>
+            }>
                 <LoginContent />
             </Suspense>
         </AuthContainer>
