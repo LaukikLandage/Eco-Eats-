@@ -12,12 +12,27 @@ export default async function middleware(req: NextRequest) {
     const cookie = req.cookies.get('session')?.value;
     const session = cookie ? await decrypt(cookie).catch(() => null) : null;
 
+    // 1. If not logged in and route is protected -> login
     if (isProtectedRoute && !session) {
         return NextResponse.redirect(new URL('/login', req.nextUrl));
     }
 
-    if (path.startsWith('/admin') && session?.user?.role !== 'admin') {
-        return NextResponse.redirect(new URL('/dashboard', req.nextUrl));
+    // 2. Strict Role Protection
+    if (session) {
+        const userRole = session.user?.role;
+        const isStudentRoute = path.startsWith('/dashboard') ||
+            ['/feedback', '/waste-report', '/rewards', '/credits', '/achievements'].some(r => path.startsWith(r));
+        const isAdminRoute = path.startsWith('/admin');
+
+        // Admin trying to access student routes
+        if (userRole === 'admin' && isStudentRoute) {
+            return NextResponse.redirect(new URL('/admin', req.nextUrl));
+        }
+
+        // Student trying to access admin routes
+        if (userRole === 'student' && isAdminRoute) {
+            return NextResponse.redirect(new URL('/dashboard', req.nextUrl));
+        }
     }
 
     if (
