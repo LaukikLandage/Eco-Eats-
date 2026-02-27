@@ -25,6 +25,10 @@ export async function POST(req: Request) {
 
         // University portal logic
         if (type === "university") {
+            if (!decodedToken.email_verified) {
+                return NextResponse.json({ error: "Please verify your email address. Check your inbox." }, { status: 403 });
+            }
+
             // Check if email is in the imported allowlist array
             if (!allowedEmails.includes(email)) {
                 return NextResponse.json({ error: "Unauthorized access" }, { status: 403 });
