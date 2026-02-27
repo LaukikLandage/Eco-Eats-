@@ -19,6 +19,8 @@ if (!admin.apps.length) {
     }
 }
 
-// Ensure build doesn't crash if app couldn't be initialized properly
+import { getFirestore } from 'firebase-admin/firestore';
+
 export const adminAuth = admin.apps.length > 0 ? admin.auth() : null as unknown as admin.auth.Auth;
 export const adminApp = admin.apps.length > 0 ? admin.app() : null;
+export const adminDb = admin.apps.length > 0 ? getFirestore(admin.app()!) : null as unknown as FirebaseFirestore.Firestore;
