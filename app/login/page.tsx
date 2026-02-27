@@ -37,22 +37,26 @@ function LoginContent() {
             const email = data.email as string;
             const password = data.password as string;
 
-            // Simple validation
-            if (!email.includes("@")) {
-                throw new Error("Please enter a valid email address");
-            }
-            if (password.length < 1) {
-                throw new Error("Password is required");
+            const res = await fetch("/api/auth/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password }),
+            });
+
+            const result = await res.json();
+
+            if (!res.ok) {
+                throw new Error(result.error || "Login failed");
             }
 
-            // In a real application, we would call /api/auth/login here
-            // For now, we simulate success and redirect based on type
-            const redirectPath = loginType === "university" ? "/admin" : "/dashboard";
-
-            // Artificial delay for feel
-            await new Promise(resolve => setTimeout(resolve, 800));
+            // Successfully logged in
+            // Redirect based on user role returned from backend
+            // But we also respect the loginType selected on frontend for consistency
+            const userRole = result.user?.role;
+            const redirectPath = userRole === "admin" ? "/admin" : "/dashboard";
 
             router.push(redirectPath);
+            router.refresh(); // Refresh to update middleware state
         } catch (err: any) {
             setError(err.message);
         } finally {
@@ -164,10 +168,10 @@ function LoginContent() {
                                         <Mail className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-green-500 transition-colors" size={18} />
                                         <input
                                             name="email"
-                                            type="email"
+                                            type="text"
                                             required
                                             className="w-full pl-12 pr-6 py-3.5 sm:py-4 rounded-2xl border-2 border-slate-50 bg-slate-50 focus:bg-white focus:border-green-500 focus:ring-4 focus:ring-green-500/5 outline-none transition-all font-medium text-sm sm:text-base"
-                                            placeholder={loginType === "university" ? "admin@university.edu" : "student@university.edu"}
+                                            placeholder={loginType === "university" ? "Admin ID or Email" : "Student ID or Email"}
                                         />
                                     </div>
                                 </div>

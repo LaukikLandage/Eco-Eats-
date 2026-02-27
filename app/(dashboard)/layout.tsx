@@ -1,3 +1,5 @@
+import BottomNav from "@/components/BottomNav";
+
 export default function DashboardLayout({
     children,
 }: {
@@ -8,6 +10,7 @@ export default function DashboardLayout({
             <main className="max-w-7xl mx-auto px-6 py-12 min-h-[80vh]">
                 {children}
             </main>
+            <BottomNav />
         </div>
     );
 }
