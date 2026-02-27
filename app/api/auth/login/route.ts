@@ -1,54 +1,92 @@
 import { NextResponse } from "next/server";
-import { loginSchema } from "@/lib/validation";
 import { prisma } from "@/lib/prisma";
-import bcrypt from "bcryptjs";
 import { login } from "@/lib/auth";
+import { adminAuth } from "@/lib/firebase/admin";
+import allowedEmails from "@/admin-allowlist.json";
 
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const validatedData = loginSchema.parse(body);
-        const { type } = body; // 'university' or 'student'
+        const { idToken, type } = body;
 
-        // Find user by email or studentId
-        const user = await prisma.student.findFirst({
-            where: {
-                OR: [
-                    { email: validatedData.email },
-                    { studentId: validatedData.email }
-                ]
-            },
-        });
-
-        if (!user) {
-            return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
+        if (!idToken || !type) {
+            return NextResponse.json({ error: "Missing token or login type" }, { status: 400 });
         }
 
-        // Verify role matches selected portal
-        if (type === "university" && user.role !== "admin") {
-            return NextResponse.json({ error: "Access denied. Use Student Login." }, { status: 403 });
-        }
-        if (type === "student" && user.role !== "student") {
-            return NextResponse.json({ error: "Access denied. Use University Login." }, { status: 403 });
-        }
+        // Verify Firebase ID Token
+        const decodedToken = await adminAuth.verifyIdToken(idToken);
+        const email = decodedToken.email;
 
-        const isPasswordValid = await bcrypt.compare(validatedData.password, user.password);
-
-        if (!isPasswordValid) {
-            return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
+        if (!email) {
+            return NextResponse.json({ error: "No email associated with this token" }, { status: 400 });
         }
 
-        const { password, ...userWithoutPassword } = user;
-        await login(userWithoutPassword);
+        // University portal logic
+        if (type === "university") {
+            // Check if email is in the imported allowlist array
+            if (!allowedEmails.includes(email)) {
+                return NextResponse.json({ error: "Unauthorized access" }, { status: 403 });
+            }
 
-        return NextResponse.json({
-            message: "Login successful",
-            user: userWithoutPassword
-        });
+            let user = await prisma.student.findUnique({ where: { email } });
+            if (!user) {
+                user = await prisma.student.create({
+                    data: {
+                        name: decodedToken.name || "University Admin",
+                        email: email,
+                        password: "FirebaseManaged",
+                        studentId: email.split("@")[0] || "admin",
+                        university: "MIT ADT",
+                        class: "Admin",
+                        role: "admin",
+                        credits: 0,
+                        points: 0,
+                        isVerified: true,
+                    }
+                });
+            } else if (user.role !== "admin") {
+                user = await prisma.student.update({
+                    where: { email },
+                    data: { role: "admin" }
+                });
+            }
+
+            const { password: _, ...userWithoutPassword } = user;
+            await login(userWithoutPassword);
+            return NextResponse.json({ message: "Login successful", user: userWithoutPassword });
+        }
+
+        // Student portal logic
+        if (type === "student") {
+            let user = await prisma.student.findUnique({ where: { email } });
+
+            if (!user) {
+                // Auto-create account if using Google Auth
+                user = await prisma.student.create({
+                    data: {
+                        name: decodedToken.name || "Student",
+                        email: email,
+                        password: "FirebaseManaged",
+                        studentId: email.split("@")[0] || "student",
+                        university: "MIT ADT",
+                        class: "N/A",
+                        role: "student",
+                        credits: 100,
+                        points: 0,
+                        isVerified: false,
+                    }
+                });
+            }
+
+            const { password: _, ...userWithoutPassword } = user;
+            await login(userWithoutPassword);
+            return NextResponse.json({ message: "Login successful", user: userWithoutPassword });
+        }
+
+        return NextResponse.json({ error: "Invalid login type" }, { status: 400 });
+
     } catch (error: any) {
-        if (error.name === "ZodError") {
-            return NextResponse.json({ error: error.errors[0].message }, { status: 400 });
-        }
-        return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+        console.error("[Login Error]:", error);
+        return NextResponse.json({ error: "Authentication failed. Token invalid or expired." }, { status: 401 });
     }
 }

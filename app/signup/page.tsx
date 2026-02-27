@@ -6,6 +6,8 @@ import { motion } from "framer-motion";
 import { ChevronLeft, Camera, User, School, Mail, Lock, Eye, EyeOff, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import AuthContainer from "@/components/AuthContainer";
+import { auth } from "@/lib/firebase/client";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 export default function SignupPage() {
     const router = useRouter();
@@ -22,18 +24,48 @@ export default function SignupPage() {
         const data = Object.fromEntries(formData);
 
         try {
+            // First create the user in Firebase Auth
+            const email = data.email as string;
+            const password = data.password as string;
+
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+
+            // Optional: update their display name in Firebase
+            await updateProfile(user, {
+                displayName: `${data.firstName} ${data.lastName}`
+            });
+
+            // Pass the details to our backend to create Prisma record
             const res = await fetch("/api/auth/signup", {
                 method: "POST",
-                body: JSON.stringify(data),
+                body: JSON.stringify({
+                    email: email,
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    studentId: data.studentId,
+                    className: data.class,
+                    uid: user.uid
+                }),
                 headers: { "Content-Type": "application/json" },
             });
 
             const result = await res.json();
-            if (!res.ok) throw new Error(result.error || "Signup failed");
+            if (!res.ok) {
+                // If backend fails, optionally delete the Firebase user to prevent orphaned records
+                await user.delete().catch(console.error);
+                throw new Error(result.error || "Signup failed at database stage");
+            }
 
-            router.push("/login?message=Signup successful! Please login.");
-        } catch (err: any) {
-            setError(err.message);
+            // Immediately clear the firebase session so they have to login properly via the backend
+            await auth.signOut();
+            router.push("/login?message=Signup successful! Please login from student portal.");
+        } catch (err: unknown) {
+            if (err instanceof Error) {
+                setError(err.message);
+            } else {
+                setError("An error occurred during sign up");
+            }
         } finally {
             setLoading(false);
         }
@@ -128,6 +160,7 @@ export default function SignupPage() {
                                     name="password"
                                     type={showPassword ? "text" : "password"}
                                     required
+                                    minLength={6}
                                     className="w-full pl-12 pr-14 py-3.5 rounded-2xl border-2 border-slate-50 bg-slate-50 focus:bg-white focus:border-green-500 outline-none transition-all font-medium text-sm"
                                     placeholder="••••••••"
                                 />
