@@ -222,8 +222,8 @@ export default function ContactPage() {
                         <ContactInfoCard
                             icon={<MapPin className="text-orange-500" size={24} />}
                             title="Visit Us"
-                            detail="Pune, Maharashtra, India"
-                            link="https://maps.google.com/?q=Pune,Maharashtra,India"
+                            detail="MIT-ADT University, Pune"
+                            link="https://share.google/Iv21l7mamfjHD08lb"
                         />
                     </div>
 
@@ -242,11 +242,11 @@ export default function ContactPage() {
                         ></iframe>
                         <div className="p-4 flex items-center justify-between">
                             <div>
-                                <h4 className="font-black text-slate-900">Pune Headquarters</h4>
-                                <p className="text-xs font-bold text-slate-400">Maharashtra, India</p>
+                                <h4 className="font-black text-slate-900">MIT-ADT University</h4>
+                                <p className="text-xs font-bold text-slate-400">Loni Kalbhor, Pune</p>
                             </div>
                             <Link
-                                href="https://maps.google.com/?q=Pune,Maharashtra,India"
+                                href="https://share.google/Iv21l7mamfjHD08lb"
                                 target="_blank"
                                 className="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center text-slate-400 hover:text-[#22C55E] hover:bg-green-50 transition-all"
                             >
