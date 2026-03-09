@@ -17,7 +17,7 @@ const teamMembers = [
         description: "Leads the project planning, coordinates team tasks, and ensures the project progresses smoothly and on schedule.",
     },
     {
-        name: "Siddhi Agawale",
+        name: "Siddhi Agalave",
         role: "Research & Presentation Lead",
         description: "Conducts research, prepares project insights, and delivers presentations for demos and evaluations.",
     },
