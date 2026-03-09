@@ -38,14 +38,7 @@ export default function TeamPage() {
         <main className="min-h-screen bg-[#F5F7F8] pt-32 pb-20">
             {/* Hero Section */}
             <section className="px-6 mb-20 text-center">
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="inline-flex items-center gap-2 bg-[#22C55E]/10 px-4 py-2 rounded-full mb-8"
-                >
-                    <Heart size={16} className="text-[#22C55E]" />
-                    <span className="text-[11px] font-black uppercase tracking-widest text-[#22C55E]">The Builders</span>
-                </motion.div>
+
 
                 <motion.h1
                     initial={{ opacity: 0, y: 20 }}
