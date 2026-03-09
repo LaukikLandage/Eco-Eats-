@@ -8,28 +8,28 @@ import TeamCard from "@/components/TeamCard";
 const teamMembers = [
     {
         name: "Laukik Landage",
-        role: "Project Lead & Full Stack Developer",
-        description: "Leads the technical architecture and oversees development & deployment.",
+        role: "Developer & UI/UX Designer",
+        description: "Builds and maintains the web application, designs the user interface, and ensures a smooth and responsive user experience.",
     },
     {
         name: "Priya Verma",
-        role: "Backend & Database Engineer",
-        description: "Responsible for APIs, database modeling, authentication, and security.",
-    },
-    {
-        name: "Diksha Singh",
-        role: "UI/UX Designer",
-        description: "Designs seamless experiences across mobile and web platforms.",
+        role: "Project Lead",
+        description: "Leads the project planning, coordinates team tasks, and ensures the project progresses smoothly and on schedule.",
     },
     {
         name: "Siddhi Agawale",
-        role: "Data & Analytics Engineer",
-        description: "Builds waste analytics dashboards and sustainability insights.",
+        role: "Research & Presentation Lead",
+        description: "Conducts research, prepares project insights, and delivers presentations for demos and evaluations.",
+    },
+    {
+        name: "Diksha Singh",
+        role: "Research & Documentation Designer",
+        description: "Handles project research and creates structured documentation, diagrams, and reports.",
     },
     {
         name: "Mahi Bhat",
-        role: "Marketing & Strategy",
-        description: "Handles branding, outreach, partnerships, and growth strategy.",
+        role: "Research & Content Designer",
+        description: "Works on project research and creates presentation content, slides, and supporting materials.",
     }
 ];
 
