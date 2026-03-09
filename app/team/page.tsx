@@ -13,25 +13,25 @@ const teamMembers = [
         image: "https://i.pravatar.cc/300?img=11"
     },
     {
-        name: "Member 2",
+        name: "Priya Verma",
         role: "Backend & Database Engineer",
         description: "Responsible for APIs, database modeling, authentication, and security.",
         image: "https://i.pravatar.cc/300?img=33"
     },
     {
-        name: "Member 3",
+        name: "Diksha Singh",
         role: "UI/UX Designer",
         description: "Designs seamless experiences across mobile and web platforms.",
         image: "https://i.pravatar.cc/300?img=47"
     },
     {
-        name: "Member 4",
+        name: "Siddhi Agawale",
         role: "Data & Analytics Engineer",
         description: "Builds waste analytics dashboards and sustainability insights.",
         image: "https://i.pravatar.cc/300?img=68"
     },
     {
-        name: "Member 5",
+        name: "Mahi Bhat",
         role: "Marketing & Strategy",
         description: "Handles branding, outreach, partnerships, and growth strategy.",
         image: "https://i.pravatar.cc/300?img=53"
