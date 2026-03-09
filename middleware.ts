@@ -19,7 +19,7 @@ export default async function middleware(req: NextRequest) {
 
     // 2. Strict Role Protection
     if (session) {
-        const userRole = session.user?.role;
+        const userRole = (session as any).user?.role;
         const isStudentRoute = path.startsWith('/dashboard') ||
             ['/feedback', '/waste-report', '/rewards', '/credits', '/achievements'].some(r => path.startsWith(r));
         const isAdminRoute = path.startsWith('/admin');
@@ -42,7 +42,7 @@ export default async function middleware(req: NextRequest) {
         !req.nextUrl.pathname.startsWith('/admin') &&
         req.nextUrl.pathname !== '/'
     ) {
-        const redirectPath = session?.user?.role === 'admin' ? '/admin' : '/dashboard';
+        const redirectPath = (session as any)?.user?.role === 'admin' ? '/admin' : '/dashboard';
         return NextResponse.redirect(new URL(redirectPath, req.nextUrl));
     }
 
