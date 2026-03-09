@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Leaf, ArrowRight, ShieldCheck, Zap, Heart, Globe, BarChart3, Users } from "lucide-react";
+import { ArrowRight, Heart, BarChart3, Users } from "lucide-react";
 import Link from "next/link";
 
 export default function LandingPage() {
@@ -10,15 +10,6 @@ export default function LandingPage() {
       <main>
         {/* Hero Section */}
         <section className="relative px-6 pt-20 pb-32 max-w-7xl mx-auto flex flex-col items-center text-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-8"
-          >
-            <Zap size={16} className="text-primary" />
-            <span className="text-[11px] font-black uppercase tracking-widest text-primary">Joining 10,000+ Students</span>
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

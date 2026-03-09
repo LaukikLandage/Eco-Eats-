@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { motion } from "framer-motion";
@@ -75,8 +76,8 @@ export default function FeedbackPage() {
                             key={opt.id}
                             onClick={() => setSelected(opt.id)}
                             className={`flex flex-col items-center justify-center gap-3 p-6 rounded-3xl border-2 transition-all duration-200 ${selected === opt.id
-                                    ? "border-primary bg-primary/5 shadow-md shadow-primary/5"
-                                    : "border-transparent bg-white shadow-sm"
+                                ? "border-primary bg-primary/5 shadow-md shadow-primary/5"
+                                : "border-transparent bg-white shadow-sm"
                                 }`}
                         >
                             <div className={`p-3 rounded-2xl ${opt.bg} ${opt.color}`}>
