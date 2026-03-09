@@ -10,31 +10,26 @@ const teamMembers = [
         name: "Laukik Landage",
         role: "Project Lead & Full Stack Developer",
         description: "Leads the technical architecture and oversees development & deployment.",
-        image: "https://i.pravatar.cc/300?img=11"
     },
     {
         name: "Priya Verma",
         role: "Backend & Database Engineer",
         description: "Responsible for APIs, database modeling, authentication, and security.",
-        image: "https://i.pravatar.cc/300?img=33"
     },
     {
         name: "Diksha Singh",
         role: "UI/UX Designer",
         description: "Designs seamless experiences across mobile and web platforms.",
-        image: "https://i.pravatar.cc/300?img=47"
     },
     {
         name: "Siddhi Agawale",
         role: "Data & Analytics Engineer",
         description: "Builds waste analytics dashboards and sustainability insights.",
-        image: "https://i.pravatar.cc/300?img=68"
     },
     {
         name: "Mahi Bhat",
         role: "Marketing & Strategy",
         description: "Handles branding, outreach, partnerships, and growth strategy.",
-        image: "https://i.pravatar.cc/300?img=53"
     }
 ];
 

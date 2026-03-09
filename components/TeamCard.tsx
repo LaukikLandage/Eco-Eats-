@@ -7,23 +7,15 @@ interface TeamMemberProps {
     name: string;
     role: string;
     description: string;
-    image: string;
 }
 
-export default function TeamCard({ name, role, description, image }: TeamMemberProps) {
+export default function TeamCard({ name, role, description }: TeamMemberProps) {
     return (
         <motion.div
             whileHover={{ y: -8 }}
-            className="card group border border-slate-100 p-6 flex flex-col items-center text-center transition-all bg-white"
+            className="card group border border-slate-100 p-8 flex flex-col items-center text-center transition-all bg-white"
         >
-            <div className="relative mb-6">
-                <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/30 transition-colors -z-10" />
-                <img
-                    src={image}
-                    alt={name}
-                    className="w-32 h-32 rounded-full object-cover border-4 border-white shadow-xl shadow-slate-200/50"
-                />
-            </div>
+
 
             <h3 className="text-xl font-black text-slate-900 mb-1">{name}</h3>
             <span className="text-primary font-bold text-sm tracking-tight mb-4">{role}</span>
