@@ -7,15 +7,14 @@ import { Leaf, Menu, X, Play } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function PublicNavbar() {
+    // HOOKS MUST ALWAYS BE CALLED AT THE TOP LEVEL
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const pathname = usePathname();
     const router = useRouter();
     
-    // CRITICAL: Hide this navbar completely on Demo routes to avoid overlap
-    if (pathname.startsWith('/demo')) {
-        return null;
-    }
+    // Check if we should render early AFTER all hooks are declared
+    const isDemoRoute = pathname.startsWith('/demo');
 
     useEffect(() => {
         const handleScroll = () => {
@@ -24,6 +23,11 @@ export default function PublicNavbar() {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
+
+    // NOW we can return null if on a demo route
+    if (isDemoRoute) {
+        return null;
+    }
 
     const navLinks = [
         { name: "Home", href: "/", type: "page" },
