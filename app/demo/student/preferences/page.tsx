@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { ChevronLeft, X, Check, Save, Zap, Heart, Ban } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
 const portions = ["Small", "Medium", "Large"];
@@ -15,7 +15,7 @@ const foodItems = [
     { name: "Salad", icon: "🥗", details: "Fresh farm veggies" }
 ];
 
-export default function PreferenceSelectionPage() {
+function PreferenceContent() {
     const searchParams = useSearchParams();
     const day = searchParams.get('day') || "Monday";
     const meal = searchParams.get('meal') || "Lunch";
@@ -159,5 +159,13 @@ export default function PreferenceSelectionPage() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function PreferenceSelectionPage() {
+    return (
+        <Suspense fallback={<div className="h-screen flex items-center justify-center text-[10px] font-black uppercase tracking-[0.5em] text-slate-300 animate-pulse">Loading Selection...</div>}>
+            <PreferenceContent />
+        </Suspense>
     );
 }

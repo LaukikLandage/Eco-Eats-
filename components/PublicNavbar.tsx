@@ -11,7 +11,11 @@ export default function PublicNavbar() {
     const [scrolled, setScrolled] = useState(false);
     const pathname = usePathname();
     const router = useRouter();
-    const isDemo = pathname.includes('/demo');
+    
+    // CRITICAL: Hide this navbar completely on Demo routes to avoid overlap
+    if (pathname.startsWith('/demo')) {
+        return null;
+    }
 
     useEffect(() => {
         const handleScroll = () => {
@@ -80,50 +84,39 @@ export default function PublicNavbar() {
                 </Link>
 
                 {/* Unified Horizontal Navigation */}
-                {!isDemo && (
-                    <div className="hidden lg:flex items-center justify-center flex-1 gap-1 xl:gap-2">
-                        {navLinks.map((link) => {
-                            const isActive = pathname === link.href;
-                            const isSection = link.type === "section";
-                            
-                            return (
-                                <Link
-                                    key={link.name}
-                                    href={link.href}
-                                    onClick={(e) => handleNavClick(e, link)}
-                                    className={`whitespace-nowrap px-3 xl:px-4 py-2 rounded-xl text-[10px] xl:text-[11px] font-black uppercase tracking-widest transition-all duration-300 ${
-                                        isActive 
-                                        ? "bg-primary text-slate-900 shadow-sm scale-105" 
-                                        : isSection 
-                                            ? "text-slate-400 hover:text-primary-dark hover:bg-slate-50" 
-                                            : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
-                                    }`}
-                                >
-                                    {link.name}
-                                </Link>
-                            );
-                        })}
-                    </div>
-                )}
+                <div className="hidden lg:flex items-center justify-center flex-1 gap-1 xl:gap-2">
+                    {navLinks.map((link) => {
+                        const isActive = pathname === link.href;
+                        const isSection = link.type === "section";
+                        
+                        return (
+                            <Link
+                                key={link.name}
+                                href={link.href}
+                                onClick={(e) => handleNavClick(e, link)}
+                                className={`whitespace-nowrap px-3 xl:px-4 py-2 rounded-xl text-[10px] xl:text-[11px] font-black uppercase tracking-widest transition-all duration-300 ${
+                                    isActive 
+                                    ? "bg-primary text-slate-900 shadow-sm scale-105" 
+                                    : isSection 
+                                        ? "text-slate-400 hover:text-primary-dark hover:bg-slate-50" 
+                                        : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
+                                }`}
+                            >
+                                {link.name}
+                            </Link>
+                        );
+                    })}
+                </div>
 
                 {/* Right Actions */}
                 <div className="flex items-center gap-3">
-                    {!isDemo ? (
-                        <>
-                            <Link href="/demo/student" className="hidden 2xl:flex text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-slate-900 px-4 py-2 transition-colors items-center gap-2 group/demo">
-                                <Play size={12} fill="currentColor" className="group-hover:scale-110 transition-transform text-primary" />
-                                Student Demo
-                            </Link>
-                            <Link href="/demo/admin" className="btn-primary !py-2.5 !px-6 !text-[10px] !font-black !uppercase !tracking-widest shadow-xl shadow-primary/20 hover:scale-105 active:scale-95 transition-all whitespace-nowrap">
-                                University Demo
-                            </Link>
-                        </>
-                    ) : (
-                        <div className="bg-primary/10 border border-primary/20 px-4 py-2 rounded-full flex items-center gap-2">
-                            <div className="w-2 h-2 bg-primary animate-pulse rounded-full" />
-                            <span className="text-[9px] font-black uppercase tracking-widest text-primary-dark">Demo Active</span>
-                        </div>
-                    )}
+                    <Link href="/demo/student" className="hidden 2xl:flex text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-slate-900 px-4 py-2 transition-colors items-center gap-2 group/demo">
+                        <Play size={12} fill="currentColor" className="group-hover:scale-110 transition-transform text-primary" />
+                        Student Demo
+                    </Link>
+                    <Link href="/demo/admin" className="btn-primary !py-2.5 !px-6 !text-[10px] !font-black !uppercase !tracking-widest shadow-xl shadow-primary/20 hover:scale-105 active:scale-95 transition-all whitespace-nowrap">
+                        University Demo
+                    </Link>
 
                     {/* Mobile Menu Button */}
                     <button

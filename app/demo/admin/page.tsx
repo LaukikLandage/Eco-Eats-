@@ -8,9 +8,10 @@ import {
   Zap,
   Target
 } from "lucide-react";
+import SafeChart from "@/components/SafeChart";
 import { 
   AreaChart, Area, XAxis, YAxis, CartesianGrid, 
-  Tooltip, ResponsiveContainer, BarChart, Bar, Cell 
+  Tooltip, BarChart, Bar, Cell 
 } from 'recharts';
 
 const wasteData = [
@@ -86,7 +87,7 @@ export default function AdminDashboard() {
                     </div>
                     
                     <div className="h-[350px] w-full">
-                        <ResponsiveContainer width="100%" height="100%">
+                        <SafeChart height={350}>
                             <AreaChart data={wasteData}>
                                 <defs>
                                     <linearGradient id="colorWaste" x1="0" y1="0" x2="0" y2="1">
@@ -102,7 +103,7 @@ export default function AdminDashboard() {
                                 />
                                 <Area type="monotone" dataKey="waste" stroke="#81DD67" strokeWidth={5} fillOpacity={1} fill="url(#colorWaste)" />
                             </AreaChart>
-                        </ResponsiveContainer>
+                        </SafeChart>
                     </div>
                 </motion.div>
 
@@ -121,7 +122,7 @@ export default function AdminDashboard() {
                     </div>
 
                     <div className="h-[350px] w-full pt-4">
-                        <ResponsiveContainer width="100%" height="100%">
+                        <SafeChart height={350}>
                             <BarChart data={engagementData}>
                                 <Tooltip 
                                     cursor={{ fill: 'rgba(255,255,255,0.05)' }}
@@ -134,7 +135,7 @@ export default function AdminDashboard() {
                                 </Bar>
                                 <XAxis dataKey="time" axisLine={false} tickLine={false} tick={{ fontSize: 9, fontWeight: 900, fill: '#475569' }} />
                             </BarChart>
-                        </ResponsiveContainer>
+                        </SafeChart>
                     </div>
 
                     <div className="bg-white/5 border border-white/10 p-6 rounded-2xl flex items-center justify-between group-hover:bg-white/10 transition-all">

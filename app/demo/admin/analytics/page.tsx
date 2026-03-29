@@ -5,9 +5,10 @@ import {
   BarChart2, ShieldCheck, Clock, Zap, Users, FileText,
   TrendingDown, ArrowUpRight, ArrowDownRight, Target
 } from "lucide-react";
+import SafeChart from "@/components/SafeChart";
 import { 
   AreaChart, Area, XAxis, YAxis, CartesianGrid, 
-  Tooltip, ResponsiveContainer
+  Tooltip
 } from 'recharts';
 
 const wasteData = [
@@ -40,7 +41,7 @@ export default function AnalyticsPage() {
                 </div>
                 
                 <div className="h-[400px] w-full">
-                    <ResponsiveContainer width="100%" height="100%">
+                    <SafeChart height={400}>
                         <AreaChart data={wasteData}>
                             <defs>
                                 <linearGradient id="colorWasteAnalytics" x1="0" y1="0" x2="0" y2="1">
@@ -56,7 +57,7 @@ export default function AnalyticsPage() {
                             />
                             <Area type="monotone" dataKey="waste" stroke="#81DD67" strokeWidth={5} fillOpacity={1} fill="url(#colorWasteAnalytics)" />
                         </AreaChart>
-                    </ResponsiveContainer>
+                    </SafeChart>
                 </div>
             </motion.div>
 

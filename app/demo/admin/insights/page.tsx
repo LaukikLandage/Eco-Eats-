@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Users, BarChart2, Zap, ArrowDown, TrendingUp, Info, Activity, AlertTriangle } from "lucide-react";
+import SafeChart from "@/components/SafeChart";
 import { 
     BarChart, 
     Bar, 
@@ -9,7 +10,6 @@ import {
     YAxis, 
     CartesianGrid, 
     Tooltip, 
-    ResponsiveContainer,
     Cell
 } from "recharts";
 
@@ -59,7 +59,7 @@ export default function AdminInsightsPage() {
                         <h3 className="text-2xl font-black text-slate-900 italic uppercase">Portion Mix</h3>
                     </div>
                     <div className="h-[280px] w-full">
-                        <ResponsiveContainer width="100%" height="100%">
+                        <SafeChart height={280}>
                             <BarChart data={portionData}>
                                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
                                 <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 11, fontWeight: 'black', fill: '#94a3b8' }} />
@@ -71,7 +71,7 @@ export default function AdminInsightsPage() {
                                     ))}
                                 </Bar>
                             </BarChart>
-                        </ResponsiveContainer>
+                        </SafeChart>
                     </div>
                 </motion.div>
 

@@ -2,8 +2,9 @@
 
 import { motion } from "framer-motion";
 import { Clock, TrendingUp, Users, Zap, Wind } from "lucide-react";
+import SafeChart from "@/components/SafeChart";
 import { 
-  BarChart, Bar, XAxis, Tooltip, ResponsiveContainer, Cell 
+  BarChart, Bar, XAxis, Tooltip, Cell 
 } from 'recharts';
 
 const engagementData = [
@@ -32,7 +33,7 @@ export default function PeakTimesPage() {
                 </div>
 
                 <div className="h-[400px] w-full pt-8">
-                    <ResponsiveContainer width="100%" height="100%">
+                    <SafeChart height={400}>
                         <BarChart data={engagementData}>
                             <Tooltip 
                                 cursor={{ fill: 'rgba(255,255,255,0.05)' }}
@@ -45,7 +46,7 @@ export default function PeakTimesPage() {
                             </Bar>
                             <XAxis dataKey="time" axisLine={false} tickLine={false} tick={{ fontSize: 10, fontWeight: 900, fill: '#475569' }} />
                         </BarChart>
-                    </ResponsiveContainer>
+                    </SafeChart>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

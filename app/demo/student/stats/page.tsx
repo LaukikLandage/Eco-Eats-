@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ChevronLeft, Filter, Download, Zap, PieChart as PieIcon, BarChart2 } from "lucide-react";
 import Link from "next/link";
+import SafeChart from "@/components/SafeChart";
 import {
     BarChart,
     Bar,
@@ -10,7 +11,6 @@ import {
     YAxis,
     CartesianGrid,
     Tooltip,
-    ResponsiveContainer,
     PieChart,
     Pie,
     Cell
@@ -115,7 +115,7 @@ export default function WasteReportPage() {
                     </div>
                 </div>
                 <div className="h-[300px] w-full p-8">
-                    <ResponsiveContainer width="100%" height="100%">
+                    <SafeChart height={300}>
                         <BarChart data={weeklyData}>
                             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
                             <XAxis
@@ -140,7 +140,7 @@ export default function WasteReportPage() {
                                 barSize={40}
                             />
                         </BarChart>
-                    </ResponsiveContainer>
+                    </SafeChart>
                 </div>
             </motion.section>
 
@@ -151,7 +151,7 @@ export default function WasteReportPage() {
                 className="bg-white p-8 rounded-[3rem] border border-slate-100 flex flex-col md:flex-row items-center gap-12 shadow-sm"
             >
                 <div className="h-[180px] w-full md:w-1/2">
-                    <ResponsiveContainer width="100%" height="100%">
+                    <SafeChart height={180}>
                         <PieChart>
                             <Pie
                                 data={rescueData}
@@ -166,7 +166,7 @@ export default function WasteReportPage() {
                                 ))}
                             </Pie>
                         </PieChart>
-                    </ResponsiveContainer>
+                    </SafeChart>
                 </div>
                 <div className="flex-1 space-y-6">
                     <div className="flex flex-col">
