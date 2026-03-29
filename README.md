@@ -1,74 +1,33 @@
 # EcoEats 🍃
 
-EcoEats is a modern, eco-friendly web application designed for university communities to combat food waste. Students can track their waste, provide feedback on meals, redeem rewards, and transfer meal credits.
+**EcoEats** is a student-led initiative transforming university messes through intelligent design, behavioral science, and real-time data. This repository contains the **Frontend Prototype Demo** – a zero-login, instant access experience for students and institutions.
 
-## 🚀 Quick Start
+## 🚀 Instant Demo
+The application has been converted into a **frontend-only prototype** for easy pitching and presentation.
 
-### 1. Prerequisites
-- Node.js 18+
-- PostgreSQL database (or change provider in `schema.prisma`)
-
-### 2. Installation
-```bash
-# Clone the repository
-git clone <your-repo-url>
-cd ecoeats
-
-# Install dependencies
-npm install
-```
-
-### 3. Environment Variables
-Create a `.env` file in the root directory and add the following:
-```env
-DATABASE_URL="postgresql://user:password@localhost:5432/ecoeats"
-JWT_SECRET="your-secret-key"
-NEXT_PUBLIC_APP_URL="http://localhost:3000"
-```
-
-### 4. Database Setup
-```bash
-# Generate Prisma Client
-npx prisma generate
-
-# Run migrations
-npx prisma migrate dev --name init
-
-# Seed the database with demo students
-npx prisma db seed
-```
-
-### 5. Run the App
-```bash
-npm run dev
-```
+- **Student Demo**: Explore the rewards system, waste stats, and QR-based feedback simulation.
+- **University Demo**: View the administrative analytics dashboard, efficiency scores, and waste trends.
 
 ## 🛠️ Features
-- **Modern Landing Page**: Built with Framer Motion and a sleek green theme.
-- **Student Auth**: JWT-based login/signup with university email validation.
-- **Dashboard**: Quick access to QR scanning, stats, and core features.
-- **Waste Report**: Visualize food waste trends with Recharts.
-- **Reward Store**: Convert points into vouchers and products.
-- **Credit Transfer**: Secure student-to-student meal credit transfers.
-- **Achievements**: Leaderboards and interactive badges.
-- **Admin Panel**: Verify students and export waste analytics.
+- **Modern Landing Page**: Built with Framer Motion and a premium sleek green theme.
+- **Demo Access**: Instant role-based navigation without backend dependencies.
+- **Eco Hub Dashboard**: Quick access to simulated QR scanning, stats, and core features.
+- **Waste Analytics**: Visualize food waste trends with Recharts interactive components.
+- **Reward Store**: Simulated point conversion into vouchers and eco-coupons.
+- **Credit Transfer**: UI-only simulation of student-to-student meal credit transfers.
+- **Achievements**: Leaderboards and interactive sustainability badges.
 
-## 🛡️ Security
-- Password hashing with Bcrypt.
-- JWT Session management.
-- Route protection with Next.js Middleware.
-- Input validation with Zod.
-
-## 🎨 Design
-- **Primary Color**: `#22C55E` (Eco Green)
+## 🎨 Design System
+- **Branding**: EcoEats (PascalCase)
+- **Primary Color**: `#8FEC78` (Fresh Green)
+- **Accent Color**: `#81DD67` (Vibrant Green)
 - **Typography**: Outfit (Headings), Inter (Body)
-- **Components**: Rounded-2xl cards, glassmorphism, smooth animations.
+- **Aesthetics**: 2.5rem - 4rem rounded corners, glassmorphism, smooth Framer Motion animations.
 
-## 📦 Deployment (Vercel)
-1. Push your code to GitHub.
-2. Connect your repo to Vercel.
-3. Add environment variables.
-4. Set the build command to `prisma generate && next build`.
-5. Deploy!
+## 📦 Running Locally
+1. Clone the repository.
+2. Install dependencies: `npm install`
+3. Run the development server: `npm run dev`
+4. Visit `http://localhost:3000` to explore the demo.
 
-Built with ❤️ for a Greener Future.
+Built with ❤️ for a Greener Future by Team EcoEats.

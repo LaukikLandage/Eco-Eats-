@@ -13,23 +13,42 @@ export default function TeamCard({ name, role, description }: TeamMemberProps) {
     return (
         <motion.div
             whileHover={{ y: -8 }}
-            className="card group border border-slate-100 p-8 flex flex-col items-center text-center transition-all bg-white"
+            className="bg-white p-6 md:p-8 rounded-[16px] shadow-[0_10px_40px_rgba(0,0,0,0.03)] border border-slate-50 flex flex-col items-center text-center h-full transition-all duration-300"
         >
-
-
-            <h3 className="text-xl font-black text-slate-900 mb-1">{name}</h3>
-            <span className="text-primary font-bold text-sm tracking-tight mb-4">{role}</span>
-            <p className="text-slate-400 text-sm font-medium leading-relaxed mb-6">
+            <div className="w-16 h-16 bg-slate-900 rounded-2xl mb-6 flex items-center justify-center text-primary text-xl font-black italic shadow-lg">
+                {name.split(' ').map(n => n[0]).join('')}
+            </div>
+            
+            <h3 className="text-xl font-bold text-slate-900 mb-2 tracking-tight">
+                {name}
+            </h3>
+            
+            <div className="text-[#81DD67] font-bold mb-6 text-xs uppercase tracking-widest px-4">
+                {role}
+            </div>
+            
+            <p className="text-slate-400 font-medium text-sm leading-relaxed mb-8 flex-grow">
                 {description}
             </p>
 
-            <div className="flex items-center gap-4 mt-auto">
-                <div className="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all cursor-pointer">
+            {/* Divider Line */}
+            <hr className="w-full border-slate-100 mb-6" />
+
+            <div className="flex items-center gap-3">
+                <a 
+                    href="#" 
+                    className="w-10 h-10 bg-slate-50 rounded-full flex items-center justify-center text-slate-400 hover:bg-[#81DD67]/10 hover:text-[#81DD67] transition-all duration-300 shadow-sm"
+                    aria-label="LinkedIn Profile"
+                >
                     <Linkedin size={18} />
-                </div>
-                <div className="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center text-slate-400 hover:bg-blue-500 hover:text-white transition-all cursor-pointer">
+                </a>
+                <a 
+                    href="#" 
+                    className="w-10 h-10 bg-slate-50 rounded-full flex items-center justify-center text-slate-400 hover:bg-[#81DD67]/10 hover:text-[#81DD67] transition-all duration-300 shadow-sm"
+                    aria-label="Send Email"
+                >
                     <Mail size={18} />
-                </div>
+                </a>
             </div>
         </motion.div>
     );

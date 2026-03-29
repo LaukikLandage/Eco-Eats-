@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Leaf, Menu, X } from "lucide-react";
+import { Leaf, Menu, X, Play } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function PublicNavbar() {
@@ -12,21 +12,20 @@ export default function PublicNavbar() {
 
     const links = [
         { name: "Home", href: "/" },
-        { name: "How It Works", href: "/#features" },
         { name: "About Us", href: "/about" },
         { name: "Our Team", href: "/team" },
         { name: "Contact", href: "/contact" },
     ];
 
     return (
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-xl border-b border-slate-100">
+        <nav className="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-xl border-b border-white/20">
             <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
                 {/* Logo */}
-                <Link href="/" className="flex items-center gap-2.5">
-                    <div className="w-10 h-10 bg-[#22C55E] rounded-xl flex items-center justify-center shadow-lg shadow-green-500/20">
-                        <Leaf size={24} className="text-white fill-white/20" />
+                <Link href="/" className="flex items-center gap-2">
+                    <div className="w-9 h-9 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
+                        <Leaf size={20} className="text-slate-900 fill-slate-900/10" />
                     </div>
-                    <span className="text-2xl font-black font-heading text-slate-900 tracking-tight">EcoEats<span className="text-[#22C55E]">.</span></span>
+                    <span className="text-2xl font-black font-heading text-slate-900 tracking-tighter italic">EcoEats</span>
                 </Link>
 
                 {/* Desktop Links */}
@@ -35,7 +34,7 @@ export default function PublicNavbar() {
                         <Link
                             key={link.href}
                             href={link.href}
-                            className={`text-sm font-bold transition-colors ${pathname === link.href ? "text-[#22C55E]" : "text-slate-500 hover:text-[#22C55E]"
+                            className={`text-sm font-bold transition-all hover:scale-105 ${pathname === link.href ? "text-primary-dark" : "text-slate-500 hover:text-slate-900"
                                 }`}
                         >
                             {link.name}
@@ -43,13 +42,14 @@ export default function PublicNavbar() {
                     ))}
                 </div>
 
-                {/* Desktop Auth */}
+                {/* Desktop Demo Access */}
                 <div className="hidden md:flex items-center gap-4">
-                    <Link href="/login" className="text-sm font-bold text-slate-500 hover:text-slate-900 px-4 py-2 transition-colors">
-                        Login
+                    <Link href="/demo/student" className="text-sm font-bold text-slate-500 hover:text-slate-900 px-4 py-2 transition-colors flex items-center gap-2">
+                        <Play size={14} fill="currentColor" />
+                        Student Demo
                     </Link>
-                    <Link href="/signup" className="bg-[#22C55E] hover:bg-[#1eb054] text-white text-sm font-bold py-2.5 px-6 rounded-xl transition-all active:scale-95 whitespace-nowrap">
-                        Sign Up
+                    <Link href="/demo/admin" className="btn-primary !py-2 !px-6 !text-sm">
+                        University Demo
                     </Link>
                 </div>
 
@@ -69,7 +69,7 @@ export default function PublicNavbar() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden bg-white border-b border-slate-100 overflow-hidden"
+                        className="md:hidden bg-white/90 backdrop-blur-xl border-b border-slate-100 overflow-hidden"
                     >
                         <div className="flex flex-col p-6 gap-6">
                             {links.map((link) => (
@@ -77,7 +77,7 @@ export default function PublicNavbar() {
                                     key={link.href}
                                     href={link.href}
                                     onClick={() => setIsOpen(false)}
-                                    className={`text-lg font-bold ${pathname === link.href ? "text-[#22C55E]" : "text-slate-500"
+                                    className={`text-lg font-bold ${pathname === link.href ? "text-primary-dark" : "text-slate-500"
                                         }`}
                                 >
                                     {link.name}
@@ -85,18 +85,19 @@ export default function PublicNavbar() {
                             ))}
                             <div className="h-px bg-slate-100 my-2" />
                             <Link
-                                href="/login"
+                                href="/demo/student"
                                 onClick={() => setIsOpen(false)}
-                                className="text-lg font-bold text-slate-500"
+                                className="text-lg font-bold text-slate-500 flex items-center gap-2"
                             >
-                                Login
+                                <Play size={18} fill="currentColor" />
+                                Student Demo
                             </Link>
                             <Link
-                                href="/signup"
+                                href="/demo/admin"
                                 onClick={() => setIsOpen(false)}
-                                className="bg-[#22C55E] text-white text-center font-bold py-4 rounded-2xl shadow-lg shadow-green-500/20"
+                                className="btn-primary"
                             >
-                                Sign Up
+                                University Demo
                             </Link>
                         </div>
                     </motion.div>

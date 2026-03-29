@@ -15,9 +15,9 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "EcoEats | Connecting Communities to Combat Food Waste",
-  description: "Join the movement to reduce food waste in university campuses. One plate at a time.",
-  keywords: ["food waste", "sustainability", "university", "eco-friendly", "rewards"],
+  title: "EcoEats | Sustainable Campus Dining Initiative",
+  description: "Join the movement to reduce food waste in university campuses with EcoEats. Smart dining, less waste.",
+  keywords: ["EcoEats", "food waste", "sustainability", "university", "eco-friendly", "rewards"],
 };
 
 export default function RootLayout({

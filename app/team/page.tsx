@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Heart, Target, Leaf } from "lucide-react";
-import Link from "next/link";
+import { Leaf } from "lucide-react";
 import TeamCard from "@/components/TeamCard";
 
 const teamMembers = [
@@ -35,60 +34,58 @@ const teamMembers = [
 
 export default function TeamPage() {
     return (
-        <main className="min-h-screen bg-[#F5F7F8] pt-32 pb-20">
-            {/* Hero Section */}
-            <section className="px-6 mb-20 text-center">
-
+        <main className="min-h-screen bg-[#F9FBFA] pt-32 pb-32">
+            {/* Header Section */}
+            <section className="px-6 mb-24 text-center max-w-4xl mx-auto">
+                <motion.div
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    className="inline-flex items-center gap-2 bg-[#81DD67]/10 border border-[#81DD67]/20 px-3 py-1.5 rounded-full mb-8"
+                >
+                    <Leaf size={14} className="text-[#81DD67]" />
+                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#81DD67]">Our Startup Team</span>
+                </motion.div>
 
                 <motion.h1
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight leading-tight mb-6"
+                    className="text-5xl md:text-6xl font-black text-slate-900 tracking-tighter leading-tight mb-6"
                 >
-                    Meet the Team Behind <span className="text-[#22C55E]">EcoEats</span> 🌱
+                    The people behind <br /><span className="text-[#81DD67] italic">EcoEats initiative.</span>
                 </motion.h1>
 
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 }}
-                    className="text-lg md:text-xl text-slate-400 font-medium max-w-2xl mx-auto leading-relaxed"
+                    className="text-lg text-slate-500 font-medium max-w-2xl mx-auto leading-relaxed"
                 >
-                    &ldquo;We are a passionate group of students building technology to reduce food waste and create sustainable campuses.&rdquo;
+                    A diverse team of passionate individuals working together to eliminate food waste and transform campus dining experiences.
                 </motion.p>
             </section>
 
-            {/* Team Grid */}
-            <section className="px-6 max-w-7xl mx-auto mb-32">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Team Grid Section */}
+            <section className="px-6 max-w-7xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {teamMembers.map((member, i) => (
                         <motion.div
                             key={i}
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: i * 0.1 }}
+                            transition={{ delay: i * 0.1, duration: 0.5, ease: "easeOut" }}
                         >
                             <TeamCard {...member} />
                         </motion.div>
                     ))}
-                </div>
-            </section>
-
-            {/* Mission Section (on Team Page) */}
-            <section className="px-6 max-w-4xl mx-auto text-center py-20 bg-white rounded-[3rem] shadow-xl shadow-slate-200/50 border border-slate-100 relative overflow-hidden">
-                <div className="absolute -top-10 -right-10 w-40 h-40 bg-green-50 rounded-full -z-10" />
-                <div className="w-16 h-16 bg-[#22C55E]/10 rounded-2xl flex items-center justify-center text-[#22C55E] mx-auto mb-8">
-                    <Target size={32} />
-                </div>
-                <h2 className="text-3xl font-black text-slate-900 mb-6">Our Commitment</h2>
-                <p className="text-xl text-slate-500 font-medium leading-relaxed italic px-8">
-                    &ldquo;EcoEats is committed to reducing food waste in university campuses by combining technology, accountability, and incentives.&rdquo;
-                </p>
-                <div className="mt-12 flex justify-center gap-12 text-slate-300">
-                    <div className="flex flex-col items-center">
-                        <span className="text-3xl font-black text-slate-900">100%</span>
-                        <span className="text-xs font-bold uppercase tracking-widest">Student Led</span>
+                    
+                    {/* Placeholder for future growth */}
+                    <div className="bg-white/40 border-2 border-dashed border-slate-100 rounded-[16px] flex flex-col items-center justify-center p-12 text-center h-full group grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-700">
+                        <div className="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center text-slate-300 mb-4">
+                            <Leaf size={24} />
+                        </div>
+                        <h3 className="text-sm font-black text-slate-400 uppercase tracking-widest">Growing for Good</h3>
+                        <p className="text-xs text-slate-300 font-medium mt-2">Driven by sustainability</p>
                     </div>
                 </div>
             </section>

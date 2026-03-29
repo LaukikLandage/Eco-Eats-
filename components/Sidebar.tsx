@@ -1,99 +1,106 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import {
     Home,
     BarChart2,
     Gift,
-    CreditCard,
+    MessageCircle,
     Trophy,
     ShieldCheck,
+    Clock,
+    Zap,
+    Users,
+    FileText,
     LogOut,
     Leaf,
-    Users
+    Play
 } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Sidebar() {
     const pathname = usePathname();
-    const router = useRouter();
-    const [user, setUser] = useState<any>(null);
+    const isStudent = pathname.includes('/demo/student');
+    const isAdmin = pathname.includes('/demo/admin');
 
-    useEffect(() => {
-        const fetchSession = async () => {
-            try {
-                const res = await fetch("/api/auth/session");
-                if (res.ok) {
-                    const data = await res.json();
-                    setUser(data.user);
-                }
-            } catch (err) {
-                console.error("Failed to fetch session", err);
-            }
-        };
-        fetchSession();
-    }, []);
-
-    const navItems = [
-        { name: "Home", icon: Home, path: "/dashboard" },
-        { name: "Waste Report", icon: BarChart2, path: "/waste-report" },
-        { name: "Reward Store", icon: Gift, path: "/rewards" },
-        { name: "Credit Transfer", icon: CreditCard, path: "/credits" },
-        { name: "Achievements", icon: Trophy, path: "/achievements" },
-        { name: "Our Team", icon: Users, path: "/team" },
+    const studentNav = [
+        { name: "Dashboard", icon: Home, path: "/demo/student" },
+        { name: "Feedback", icon: MessageCircle, path: "/demo/student/feedback" },
+        { name: "Waste Stats", icon: BarChart2, path: "/demo/student/stats" },
+        { name: "Rewards", icon: Gift, path: "/demo/student/rewards" },
+        { name: "Achievements", icon: Trophy, path: "/demo/student/achievements" },
     ];
 
-    // Only show Admin Panel to admin users
-    if (user?.role === "admin") {
-        navItems.push({ name: "Admin Panel", icon: ShieldCheck, path: "/admin" });
-    }
+    const adminNav = [
+        { name: "Overview", icon: ShieldCheck, path: "/demo/admin" },
+        { name: "Waste Analytics", icon: BarChart2, path: "/demo/admin/analytics" },
+        { name: "Peak Times", icon: Clock, path: "/demo/admin/peak-times" },
+        { name: "Preparation", icon: Zap, path: "/demo/admin/preparation" },
+        { name: "Engagement", icon: Users, path: "/demo/admin/engagement" },
+        { name: "Reports", icon: FileText, path: "/demo/admin/reports" },
+    ];
 
-    const handleLogout = async () => {
-        await fetch("/api/auth/logout", { method: "POST" });
-        router.push("/login");
-    };
+    const navItems = isStudent ? studentNav : adminNav;
+
+    // Don't show sidebar on landing/about etc.
+    if (!isStudent && !isAdmin) return null;
 
     return (
-        <aside className="hidden md:flex flex-col w-72 bg-white border-r border-slate-100 h-screen sticky top-0 shadow-[4px_0_24px_rgba(0,0,0,0.02)]">
-            <div className="p-10">
-                <Link href="/dashboard" className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center shadow-[0_8px_16px_rgba(141,198,63,0.3)]">
-                        <Leaf size={28} className="text-white fill-white/20" />
+        <aside className="hidden md:flex flex-col w-72 bg-white border-r border-slate-100 h-[calc(100vh-5rem)] sticky top-20 overflow-hidden">
+            {/* Logo */}
+            <div className="p-8">
+                <Link href="/" className="flex items-center gap-2 group">
+                    <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform duration-500">
+                        <Leaf size={22} className="text-slate-900" />
                     </div>
-                    <span className="text-2xl font-black font-heading text-slate-900 tracking-tight">
-                        EcoEats<span className="text-primary">.</span>
-                    </span>
+                    <span className="text-2xl font-black font-heading text-slate-900 tracking-tighter italic">EcoEats</span>
                 </Link>
+
+                {/* Role Badge */}
+                <div className="mt-8 flex items-center gap-2 bg-slate-900 text-white px-4 py-2.5 rounded-2xl shadow-xl shadow-slate-900/10">
+                    <Play size={10} className="text-primary fill-primary" />
+                    <span className="text-[10px] font-black uppercase tracking-[0.2em]">
+                        {isStudent ? "Student Demo" : "University Admin"}
+                    </span>
+                </div>
             </div>
 
-            <nav className="flex-1 px-6 space-y-3 mt-4 overflow-y-auto">
+            {/* Navigation */}
+            <nav className="flex-1 px-4 space-y-2 mt-4 overflow-y-auto scrollbar-none">
                 {navItems.map((item) => {
                     const isActive = pathname === item.path;
                     return (
                         <Link
                             key={item.path}
                             href={item.path}
-                            className={`flex items-center gap-4 px-5 py-4 rounded-2xl font-bold text-sm transition-all duration-300 ${isActive
-                                ? "bg-primary text-white shadow-[0_10px_20px_rgba(141,198,63,0.3)] scale-[1.02]"
-                                : "text-slate-400 hover:bg-slate-50 hover:text-slate-700"
+                            className={`flex items-center gap-3.5 px-6 py-4 rounded-[1.5rem] font-black text-xs uppercase tracking-widest transition-all duration-300 relative group ${isActive
+                                ? "text-slate-900"
+                                : "text-slate-400 hover:text-slate-600 hover:bg-slate-50"
                                 }`}
                         >
-                            <item.icon size={22} strokeWidth={isActive ? 2.5 : 2} />
+                            {isActive && (
+                                <motion.div
+                                    layoutId="activeTabSidebar"
+                                    className="absolute inset-0 bg-primary rounded-[1.5rem] -z-10 shadow-lg shadow-primary/20"
+                                />
+                            )}
+                            <item.icon size={18} strokeWidth={isActive ? 2.5 : 2} className={isActive ? "text-slate-900" : "group-hover:text-primary transition-colors"} />
                             <span>{item.name}</span>
                         </Link>
                     );
                 })}
             </nav>
 
-            <div className="p-6">
-                <button
-                    onClick={handleLogout}
-                    className="flex items-center gap-4 w-full px-5 py-4 rounded-2xl font-bold text-sm text-slate-400 hover:bg-red-50 hover:text-red-500 transition-all duration-300"
+            {/* Footer / Exit */}
+            <div className="p-6 border-t border-slate-50">
+                <Link
+                    href="/"
+                    className="flex items-center gap-4 w-full px-6 py-4 rounded-2xl font-black text-xs uppercase tracking-widest text-slate-400 hover:bg-red-50 hover:text-red-500 transition-all duration-300"
                 >
-                    <LogOut size={22} />
-                    <span>Logout</span>
-                </button>
+                    <LogOut size={20} />
+                    <span>Exit Demo</span>
+                </Link>
             </div>
         </aside>
     );

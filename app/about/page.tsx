@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Leaf, Target, Eye, Recycle, Zap, Globe, BarChart3, Users, ArrowRight, Mail } from "lucide-react";
+import { Leaf, Target, Eye, Recycle, Zap, Globe, BarChart3, Users, ArrowRight, Mail, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 
 const highlights = [
@@ -9,25 +9,25 @@ const highlights = [
         title: "Reduce Waste",
         desc: "Precision tracking to minimize leftovers and optimize food production.",
         icon: Recycle,
-        color: "text-green-500",
-        bg: "bg-green-50"
+        color: "text-primary-dark",
+        bg: "bg-primary/10"
     },
     {
         title: "Earn Rewards",
         desc: "Get rewarded for sustainable habits with points and eco-coupons.",
         icon: Zap,
-        color: "text-amber-500",
-        bg: "bg-amber-50"
+        color: "text-orange-500",
+        bg: "bg-orange-50"
     },
     {
-        title: "Smart Credit Transfer",
-        desc: "Seamlessly transfer extra meal credits to peers in real-time.",
+        title: "Smart Flow",
+        desc: "Seamlessly manage dining traffic with real-time rush indicators.",
         icon: Users,
         color: "text-blue-500",
         bg: "bg-blue-50"
     },
     {
-        title: "Data-Driven Insights",
+        title: "Data Insights",
         desc: "Campus-wide analytics to understand and improve consumption patterns.",
         icon: BarChart3,
         color: "text-purple-500",
@@ -37,44 +37,46 @@ const highlights = [
 
 export default function AboutPage() {
     return (
-        <main className="bg-[#F5F7F8] min-h-screen">
+        <main className="bg-[#F5F7F8] min-h-screen pt-20">
             {/* Hero Section */}
-            <section className="relative pt-32 pb-20 px-6 overflow-hidden bg-white">
-                <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-green-50/50 to-transparent -z-10" />
+            <section className="relative pt-24 pb-20 px-6 overflow-hidden bg-white rounded-b-[4rem] shadow-sm">
+                <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent -z-10" />
                 <div className="max-w-7xl mx-auto text-center md:text-left">
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        className="inline-flex items-center gap-2 bg-[#22C55E]/10 px-4 py-2 rounded-full mb-8"
+                        className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-4 py-2 rounded-full mb-8"
                     >
-                        <Leaf size={16} className="text-[#22C55E]" />
-                        <span className="text-[11px] font-black uppercase tracking-widest text-[#22C55E]">Our Story & Purpose</span>
+                        <Leaf size={16} className="text-primary-dark" />
+                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary-dark">Our Story & Purpose</span>
                     </motion.div>
 
-                    <div className="grid md:grid-cols-2 gap-12 items-center">
+                    <div className="grid md:grid-cols-2 gap-16 items-center">
                         <div>
                             <motion.h1
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="text-5xl md:text-7xl font-black text-slate-900 tracking-tight leading-[1.1] mb-8"
+                                className="text-5xl md:text-7xl font-black text-slate-900 tracking-tighter leading-[1] mb-8"
                             >
-                                About <span className="text-[#22C55E]">EcoEats</span> 🌱
+                                Reimagining <br />
+                                <span className="text-primary italic">campus dining.</span>
                             </motion.h1>
                             <motion.p
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.1 }}
-                                className="text-xl text-slate-400 font-medium max-w-xl leading-relaxed"
+                                className="text-xl text-slate-500 font-medium max-w-xl leading-relaxed"
                             >
-                                Transforming campus dining through technology, accountability, and sustainability.
+                                EcoEats is a student-led initiative transforming university messes through intelligent design, behavioral science, and real-time data.
                             </motion.p>
                         </div>
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
+                            initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            className="bg-green-50 rounded-[2.5rem] aspect-video flex items-center justify-center border-8 border-white shadow-2xl overflow-hidden"
+                            className="bg-primary/5 rounded-[3rem] aspect-square md:aspect-video flex items-center justify-center border border-primary/10 shadow-2xl overflow-hidden relative group"
                         >
-                            <div className="text-4xl font-black text-[#22C55E]/30">The Future of Mess</div>
+                            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(143,236,120,0.2)_0%,transparent_70%)]"></div>
+                            <div className="text-4xl font-black text-primary-dark/20 tracking-tighter italic group-hover:scale-110 transition-transform duration-700">EcoEats Initiative</div>
                         </motion.div>
                     </div>
                 </div>
@@ -83,106 +85,97 @@ export default function AboutPage() {
             {/* Content Sections */}
             <div className="max-w-7xl mx-auto px-6 space-y-32 py-32">
                 {/* Story */}
-                <section className="grid md:grid-cols-2 gap-16 items-center">
-                    <div className="space-y-6">
-                        <h2 className="text-3xl font-black text-slate-900">Our Story</h2>
-                        <div className="space-y-4 text-slate-500 font-medium leading-relaxed">
+                <section className="grid md:grid-cols-2 gap-20 items-center">
+                    <div className="space-y-8">
+                        <div className="inline-block p-3 bg-white rounded-2xl shadow-sm border border-slate-100">
+                           <Globe size={24} className="text-primary" />
+                        </div>
+                        <h2 className="text-4xl font-black text-slate-900 tracking-tight">Built by students, <br />for the planet.</h2>
+                        <div className="space-y-6 text-slate-500 font-medium leading-relaxed text-lg">
                             <p>
-                                EcoEats was founded with a simple but powerful vision — to reduce food waste in university campuses using smart technology.
+                                EcoEats was born from a simple observation: campus dining halls produce massive amounts of waste due to a lack of real-time communication between students and kitchens.
                             </p>
                             <p>
-                                Every day, large amounts of food are wasted in mess facilities due to lack of tracking, feedback, and awareness. We realized that small behavioral changes, supported by data and incentives, could create a major environmental impact.
-                            </p>
-                            <p>
-                                Built by students, for students — EcoEats combines waste tracking, feedback systems, reward incentives, and credit transfers into one unified sustainability platform.
+                                We realized that by applying **behavioral design** and **flow optimization**, we could significantly reduce prep-waste while making the dining experience smoother for everyone.
                             </p>
                         </div>
                     </div>
-                    <div className="bg-white p-8 rounded-[2rem] shadow-xl shadow-slate-200/50 border border-slate-100 flex flex-col gap-6">
-                        <div className="flex gap-4 items-center">
-                            <div className="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center text-white">
-                                <Globe size={24} />
-                            </div>
-                            <div>
-                                <div className="text-sm font-black text-slate-900 leading-none">Global Impact</div>
-                                <div className="text-xs text-slate-400 font-bold uppercase tracking-wider">Starting Local</div>
-                            </div>
-                        </div>
-                        <div className="text-3xl font-black text-slate-800">1.3B <span className="text-sm font-medium text-slate-400 block tracking-normal">Tons of food wasted globally per year.</span></div>
-                        <div className="h-2 bg-slate-50 rounded-full overflow-hidden">
-                            <div className="h-full bg-green-500 w-1/3" />
-                        </div>
+                    <div className="grid grid-cols-2 gap-6">
+                       <div className="p-8 bg-white rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/50 flex flex-col justify-between aspect-square">
+                          <div className="text-5xl font-black text-primary">40%</div>
+                          <div className="text-sm font-bold text-slate-400 uppercase tracking-widest">Waste reduction targeted</div>
+                       </div>
+                       <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white flex flex-col justify-between aspect-square translate-y-12">
+                          <div className="text-5xl font-black text-primary-light italic">Zero</div>
+                          <div className="text-sm font-bold text-slate-400 uppercase tracking-widest">App downloads required</div>
+                       </div>
                     </div>
                 </section>
 
                 {/* Mission & Vision */}
-                <section className="grid md:grid-cols-2 gap-12">
-                    <div className="card p-10 space-y-6 bg-white border-none shadow-xl shadow-green-500/5">
-                        <div className="w-14 h-14 bg-green-50 rounded-2xl flex items-center justify-center text-green-500">
-                            <Target size={28} />
+                <section className="grid md:grid-cols-2 gap-8">
+                    <div className="bg-white p-12 rounded-[3rem] space-y-8 border border-slate-100 shadow-xl shadow-slate-200/20">
+                        <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-primary-dark">
+                            <Target size={32} />
                         </div>
-                        <h3 className="text-2xl font-black text-slate-900">Our Mission</h3>
-                        <div className="space-y-4 text-slate-500 font-medium">
-                            <p>Our mission is to reduce food waste across campuses by empowering students with:</p>
-                            <ul className="space-y-2">
-                                {["Real-time waste tracking", "Smart analytics", "Reward-based accountability", "Community-driven sustainability"].map(item => (
-                                    <li key={item} className="flex items-center gap-2">
-                                        <div className="w-1.5 h-1.5 bg-green-500 rounded-full" />
-                                        {item}
+                        <h3 className="text-3xl font-black text-slate-900 tracking-tight">Our Mission</h3>
+                        <div className="space-y-6 text-slate-500 font-medium">
+                            <p>To empower campus communities with tools that make sustainable dining the default choice through:</p>
+                            <ul className="space-y-4">
+                                {["Live Demand Visibility", "Frictionless Feedback", "Smart Portion Optimization"].map(item => (
+                                    <li key={item} className="flex items-center gap-3">
+                                        <CheckCircle2 size={18} className="text-primary" />
+                                        <span className="text-slate-700 font-bold">{item}</span>
                                     </li>
                                 ))}
                             </ul>
-                            <p className="italic text-slate-400">&ldquo;We believe sustainable habits begin with awareness — and awareness begins with data.&rdquo;</p>
                         </div>
                     </div>
 
-                    <div className="card p-10 space-y-6 bg-[#22C55E] border-none shadow-xl shadow-green-500/20 text-white">
-                        <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center text-white">
-                            <Eye size={28} />
+                    <div className="bg-primary p-12 rounded-[3rem] space-y-8 shadow-xl shadow-primary/20 text-slate-900 flex flex-col justify-center">
+                        <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center">
+                            <Eye size={32} />
                         </div>
-                        <h3 className="text-2xl font-black ">Our Vision</h3>
-                        <p className="text-white/80 font-medium text-lg leading-relaxed">
-                            &ldquo;To become India&rsquo;s largest campus-based sustainability platform — helping universities measure, reduce, and eliminate food waste while creating environmentally responsible communities.&rdquo;
+                        <h3 className="text-3xl font-black tracking-tight">Our Vision</h3>
+                        <p className="text-slate-900/80 font-bold text-2xl leading-tight italic">
+                            "To become the global standard for conscious campus dining, eliminating 1 million tons of food waste annually."
                         </p>
                     </div>
                 </section>
 
-                {/* Why It Matters */}
-                <section className="space-y-16">
-                    <div className="text-center space-y-4">
-                        <h2 className="text-4xl font-black text-slate-900">Why EcoEats Matters</h2>
-                        <p className="text-slate-400 font-medium max-w-2xl mx-auto">Innovative solutions designed specifically for the unique environment of university mess facilities.</p>
+                {/* Values / Why It Matters */}
+                <section className="space-y-20">
+                    <div className="text-center space-y-6">
+                        <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight">Core Pillars</h2>
+                        <p className="text-slate-500 font-medium max-w-2xl mx-auto text-lg">Innovative solutions built on three foundational principles.</p>
                     </div>
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
                         {highlights.map((item, i) => (
                             <motion.div
                                 key={i}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.1 }}
-                                className="card bg-white p-6 border-none text-center group active:scale-95 transition-all"
+                                whileHover={{ y: -10 }}
+                                className="bg-white p-8 rounded-[2.5rem] border border-slate-100 text-center transition-all duration-500 group"
                             >
-                                <div className={`w-14 h-14 ${item.bg} ${item.color} rounded-2xl mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform`}>
-                                    <item.icon size={28} />
+                                <div className={`w-16 h-16 ${item.bg} ${item.color} rounded-[1.5rem] mx-auto mb-8 flex items-center justify-center group-hover:scale-110 transition-transform`}>
+                                    <item.icon size={32} />
                                 </div>
-                                <h4 className="text-lg font-black text-slate-900 mb-2">{item.title}</h4>
-                                <p className="text-sm text-slate-400 font-medium leading-relaxed">{item.desc}</p>
+                                <h4 className="text-xl font-black text-slate-900 mb-3">{item.title}</h4>
+                                <p className="text-sm text-slate-500 font-medium leading-relaxed">{item.desc}</p>
                             </motion.div>
                         ))}
                     </div>
                 </section>
 
                 {/* CTA */}
-                <section className="bg-slate-900 rounded-[2.5rem] p-12 md:p-20 text-center text-white relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-green-500/10 rounded-full blur-[100px] transition-all group-hover:bg-green-500/20" />
-                    <h2 className="text-4xl md:text-5xl font-black mb-8">Ready to make your campus sustainable?</h2>
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <Link href="/signup" className="bg-[#22C55E] hover:bg-green-600 text-white font-black px-10 py-5 rounded-2xl transition-all shadow-xl shadow-green-500/20 flex items-center gap-2">
-                            Join EcoEats <ArrowRight size={20} />
+                <section className="bg-slate-900 rounded-[4rem] p-12 md:p-24 text-center text-white relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-[120px] transition-all group-hover:bg-primary/20" />
+                    <h2 className="text-4xl md:text-6xl font-black mb-10 tracking-tight">Ready to transform <br /> your campus?</h2>
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+                        <Link href="/demo/student" className="btn-primary !px-12 !py-6 !text-lg bg-primary hover:bg-primary-dark text-slate-900 font-black">
+                            Try Student Demo
                         </Link>
-                        <Link href="/#contact" className="bg-white/10 hover:bg-white/20 text-white font-black px-10 py-5 rounded-2xl transition-all border border-white/10 flex items-center gap-2">
-                            Contact Us <Mail size={20} />
+                        <Link href="/demo/admin" className="bg-white/10 hover:bg-white/20 text-white font-black px-12 py-6 rounded-2xl transition-all border border-white/10 text-lg">
+                            Try University Demo
                         </Link>
                     </div>
                 </section>
