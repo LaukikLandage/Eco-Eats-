@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function PublicNavbar() {
     const [isOpen, setIsOpen] = useState(false);
     const pathname = usePathname();
+    const isDemo = pathname.includes('/demo');
 
     const links = [
         { name: "Home", href: "/" },
@@ -42,16 +43,25 @@ export default function PublicNavbar() {
                     ))}
                 </div>
 
-                {/* Desktop Demo Access */}
-                <div className="hidden md:flex items-center gap-4">
-                    <Link href="/demo/student" className="text-sm font-bold text-slate-500 hover:text-slate-900 px-4 py-2 transition-colors flex items-center gap-2">
-                        <Play size={14} fill="currentColor" />
-                        Student Demo
-                    </Link>
-                    <Link href="/demo/admin" className="btn-primary !py-2 !px-6 !text-sm">
-                        University Demo
-                    </Link>
-                </div>
+                {/* Desktop Demo Access - Hide when already in demo */}
+                {!isDemo ? (
+                    <div className="hidden md:flex items-center gap-4">
+                        <Link href="/demo/student" className="text-sm font-bold text-slate-500 hover:text-slate-900 px-4 py-2 transition-colors flex items-center gap-2">
+                            <Play size={14} fill="currentColor" />
+                            Student Demo
+                        </Link>
+                        <Link href="/demo/admin" className="btn-primary !py-2 !px-6 !text-sm">
+                            University Demo
+                        </Link>
+                    </div>
+                ) : (
+                    <div className="hidden md:flex items-center gap-3">
+                         <div className="bg-primary/10 border border-primary/20 px-4 py-2 rounded-full flex items-center gap-2">
+                            <div className="w-2 h-2 bg-primary animate-pulse rounded-full" />
+                            <span className="text-[10px] font-black uppercase tracking-widest text-primary-dark">Live Demo View</span>
+                         </div>
+                    </div>
+                )}
 
                 {/* Mobile Menu Button */}
                 <button
@@ -83,22 +93,27 @@ export default function PublicNavbar() {
                                     {link.name}
                                 </Link>
                             ))}
-                            <div className="h-px bg-slate-100 my-2" />
-                            <Link
-                                href="/demo/student"
-                                onClick={() => setIsOpen(false)}
-                                className="text-lg font-bold text-slate-500 flex items-center gap-2"
-                            >
-                                <Play size={18} fill="currentColor" />
-                                Student Demo
-                            </Link>
-                            <Link
-                                href="/demo/admin"
-                                onClick={() => setIsOpen(false)}
-                                className="btn-primary"
-                            >
-                                University Demo
-                            </Link>
+                            
+                            {!isDemo && (
+                                <>
+                                    <div className="h-px bg-slate-100 my-2" />
+                                    <Link
+                                        href="/demo/student"
+                                        onClick={() => setIsOpen(false)}
+                                        className="text-lg font-bold text-slate-500 flex items-center gap-2"
+                                    >
+                                        <Play size={18} fill="currentColor" />
+                                        Student Demo
+                                    </Link>
+                                    <Link
+                                        href="/demo/admin"
+                                        onClick={() => setIsOpen(false)}
+                                        className="btn-primary"
+                                    >
+                                        University Demo
+                                    </Link>
+                                </>
+                            )}
                         </div>
                     </motion.div>
                 )}
