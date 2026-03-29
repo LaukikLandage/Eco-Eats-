@@ -7,13 +7,11 @@ import { Leaf, Menu, X, Play } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function PublicNavbar() {
-    // HOOKS MUST ALWAYS BE CALLED AT THE TOP LEVEL
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const pathname = usePathname();
     const router = useRouter();
     
-    // Check if we should render early AFTER all hooks are declared
     const isDemoRoute = pathname.startsWith('/demo');
 
     useEffect(() => {
@@ -24,7 +22,6 @@ export default function PublicNavbar() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    // NOW we can return null if on a demo route
     if (isDemoRoute) {
         return null;
     }
@@ -112,13 +109,13 @@ export default function PublicNavbar() {
                     })}
                 </div>
 
-                {/* Right Actions */}
+                {/* Right Actions - Inverted Design */}
                 <div className="flex items-center gap-3">
-                    <Link href="/demo/student" className="hidden 2xl:flex text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-slate-900 px-4 py-2 transition-colors items-center gap-2 group/demo">
-                        <Play size={12} fill="currentColor" className="group-hover:scale-110 transition-transform text-primary" />
+                    <Link href="/demo/student" className="hidden sm:flex items-center gap-2 bg-primary text-slate-900 px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg shadow-primary/20 hover:scale-105 active:scale-95 transition-all">
+                        <Play size={10} fill="currentColor" />
                         Student Demo
                     </Link>
-                    <Link href="/demo/admin" className="btn-primary !py-2.5 !px-6 !text-[10px] !font-black !uppercase !tracking-widest shadow-xl shadow-primary/20 hover:scale-105 active:scale-95 transition-all whitespace-nowrap">
+                    <Link href="/demo/admin" className="hidden sm:flex text-[10px] font-black uppercase tracking-widest text-slate-900 hover:text-primary-dark px-4 py-2.5 transition-colors whitespace-nowrap">
                         University Demo
                     </Link>
 
@@ -158,19 +155,19 @@ export default function PublicNavbar() {
                                 </Link>
                             ))}
                             <div className="h-px bg-slate-100 my-4" />
-                            <div className="flex flex-col gap-3">
+                            <div className="flex flex-col gap-3 pt-4">
                                 <Link
                                     href="/demo/student"
                                     onClick={() => setIsOpen(false)}
-                                    className="w-full py-5 bg-slate-900 text-white rounded-[1.5rem] text-[11px] font-black uppercase tracking-widest flex items-center justify-center gap-3 active:scale-95 transition-transform"
+                                    className="w-full py-5 bg-primary text-slate-900 rounded-[1.5rem] text-[11px] font-black uppercase tracking-widest flex items-center justify-center gap-3 active:scale-95 transition-transform shadow-xl shadow-primary/10"
                                 >
-                                    <Play size={14} fill="currentColor" className="text-primary" />
+                                    <Play size={14} fill="currentColor" />
                                     Student Demo
                                 </Link>
                                 <Link
                                     href="/demo/admin"
                                     onClick={() => setIsOpen(false)}
-                                    className="w-full py-5 bg-primary text-slate-900 rounded-[1.5rem] text-[11px] font-black uppercase tracking-widest flex items-center justify-center active:scale-95 transition-transform"
+                                    className="w-full py-5 text-slate-900 rounded-[1.5rem] text-[11px] font-black uppercase tracking-widest flex items-center justify-center active:scale-95 transition-transform"
                                 >
                                     University Demo
                                 </Link>
