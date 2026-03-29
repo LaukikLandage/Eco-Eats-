@@ -29,15 +29,16 @@ export default function DemoLayout({
     };
 
     return (
-        <div className="flex min-h-screen pt-20 bg-[#F9FBFA] font-body selection:bg-primary/30 selection:text-slate-900">
-            {/* Persistent Global Sidebar - Always visible on desktop */}
+        <div className="flex h-screen bg-[#F9FBFA] font-body selection:bg-primary/30 selection:text-slate-900 overflow-hidden">
+            {/* Sidebar Fix: Fixed position and width tracking */}
             <Sidebar />
 
-            <div className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
-                {/* Minimal Persistent Top Bar */}
-                <header className="sticky top-20 z-40 w-full bg-white/80 backdrop-blur-xl border-b border-slate-100 h-20 px-6 flex items-center justify-between">
+            {/* Main Content Area: Proper spacing and scroll isolation */}
+            <div className="flex-1 flex flex-col min-w-0 h-full relative">
+                {/* Header Fix: Sticky with proper Z-index and width behavior */}
+                <header className="sticky top-0 z-[60] w-full bg-white/90 backdrop-blur-xl border-b border-slate-100 h-20 px-6 flex items-center justify-between shrink-0">
                     <div className="flex items-center gap-4">
-                        <h2 className="text-sm font-black text-slate-900 uppercase tracking-widest italic">{getPageTitle(pathname)}</h2>
+                        <h2 className="text-sm font-black text-slate-900 uppercase tracking-widest italic leading-none">{getPageTitle(pathname)}</h2>
                         <div className="hidden sm:flex items-center gap-2 bg-primary/10 border border-primary/20 px-3 py-1.5 rounded-full">
                             <Play size={10} className="text-primary-dark fill-primary-dark" />
                             <span className="text-[10px] font-black uppercase tracking-widest text-primary-dark">Demo Mode</span>
@@ -50,17 +51,18 @@ export default function DemoLayout({
                         </button>
                         <div className="h-6 w-px bg-slate-100 mx-1" />
                         <div className="flex items-center gap-2 pr-2">
-                             <div className="w-8 h-8 rounded-lg bg-slate-900 flex items-center justify-center overflow-hidden border border-slate-800">
+                             <div className="w-8 h-8 rounded-lg bg-slate-900 flex items-center justify-center overflow-hidden border border-slate-800 shrink-0">
                                  <User size={16} className="text-primary-light" />
                              </div>
-                             <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 hidden sm:block">
+                             <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 hidden sm:block whitespace-nowrap">
                                  {isStudent ? "Demo Student" : "Mess Admin"}
                              </span>
                         </div>
                     </div>
                 </header>
 
-                <main className="flex-1 overflow-y-auto scroll-smooth scrollbar-thin scrollbar-thumb-slate-200">
+                {/* Main Scroll Content: Isolated scrolling to prevent sidebar issues */}
+                <main className="flex-1 overflow-y-auto scroll-smooth scrollbar-thin scrollbar-thumb-slate-200 bg-[#F9FBFA]">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={pathname}
@@ -68,7 +70,7 @@ export default function DemoLayout({
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -10 }}
                             transition={{ duration: 0.3, ease: "easeOut" }}
-                            className="p-4 md:p-8 lg:p-12 pb-32 md:pb-12"
+                            className="p-4 md:p-8 lg:p-12 pb-32 md:pb-12 max-w-7xl mx-auto w-full"
                         >
                             {children}
                         </motion.div>
@@ -77,19 +79,19 @@ export default function DemoLayout({
 
                 {/* Persistent Global Bottom Nav - Mobile Only */}
                 <BottomNav />
-                
-                {/* Floating Action Button (Student Demo) */}
-                {isStudent && (
-                    <motion.button
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                        whileTap={{ scale: 0.9 }}
-                        className="fixed bottom-24 right-6 md:right-10 md:bottom-10 z-50 w-16 h-16 bg-slate-900 text-primary rounded-2xl flex items-center justify-center shadow-2xl shadow-slate-900/40 border border-white/10 group overflow-hidden"
-                    >
-                        <div className="absolute inset-0 bg-primary/10 -z-10 blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500" />
-                        <Play size={24} fill="currentColor" />
-                    </motion.button>
-                )}
             </div>
+
+            {/* Floating Action Button - Only on student demo dashboard */}
+            {isStudent && (
+                <motion.button
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="fixed bottom-24 right-6 md:right-10 md:bottom-10 z-[100] w-16 h-16 bg-slate-900 text-primary rounded-2xl flex items-center justify-center shadow-2xl shadow-slate-900/40 border border-white/10 group overflow-hidden"
+                >
+                    <div className="absolute inset-0 bg-primary/10 -z-10 blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500" />
+                    <Play size={24} fill="currentColor" />
+                </motion.button>
+            )}
         </div>
     );
 }

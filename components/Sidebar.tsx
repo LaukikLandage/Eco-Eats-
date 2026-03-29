@@ -53,7 +53,7 @@ export default function Sidebar() {
     if (!isStudent && !isAdmin) return null;
 
     return (
-        <aside className="hidden md:flex flex-col w-72 bg-white border-r border-slate-100 h-[calc(100vh-5rem)] sticky top-20 overflow-hidden">
+        <aside className="hidden md:flex flex-col w-72 bg-white border-r border-slate-100 h-screen flex-shrink-0 overflow-hidden relative z-[70]">
             {/* Logo */}
             <div className="p-8">
                 <Link href="/" className="flex items-center gap-2 group">
