@@ -13,7 +13,12 @@ import {
   Database,
   Search,
   MessageSquare,
-  Play
+  Play,
+  Share2,
+  Settings,
+  ShieldCheck,
+  TrendingDown,
+  Navigation2
 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
@@ -23,15 +28,12 @@ export default function LandingPage() {
     <main className="bg-[#F9FBFA] overflow-hidden">
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6">
-        {/* Background Gradients */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10">
           <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 rounded-full blur-[120px]" />
           <div className="absolute bottom-[10%] right-[-5%] w-[30%] h-[50%] bg-primary/5 rounded-full blur-[100px]" />
         </div>
 
         <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
-
-
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -66,7 +68,6 @@ export default function LandingPage() {
             </Link>
           </motion.div>
 
-          {/* Stats Bar */}
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -88,47 +89,27 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Problem Section */}
-      <section id="problem" className="py-32 px-6 bg-white rounded-[4rem] relative z-10 shadow-sm">
+      {/* 1. Problem Section */}
+      <section id="problem" className="py-32 px-6 bg-white rounded-[4rem] relative z-10 shadow-sm scroll-mt-20">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-20 items-center">
-            <div className="space-y-8">
+          <div className="grid md:grid-cols-2 gap-20 items-start">
+            <div className="space-y-8 lg:sticky lg:top-40">
               <div className="w-12 h-1 bg-primary rounded-full" />
               <h2 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight leading-tight">
-                The mess waste <br /> <span className="text-slate-400">crisis is real.</span>
+                The Problem
               </h2>
-              <p className="text-slate-500 font-medium text-lg leading-relaxed max-w-md">
-                University dining halls face unique challenges that lead to inefficiency and massive environmental impact.
+              <p className="text-slate-500 font-medium text-lg leading-relaxed max-w-md italic">
+                Food waste in mess halls is a growing concern that impacts both operations and environments.
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {[
-                {
-                  icon: Trash2,
-                  title: "High Food Waste",
-                  desc: "Massive scale production without precise demand knowledge leads to tons of daily waste.",
-                },
-                {
-                  icon: AlertCircle,
-                  title: "Uncertainty Drives Excess",
-                  desc: "Not knowing how many students will show up causes messes to overprepare every meal.",
-                },
-                {
-                  icon: TrendingUp,
-                  title: "Poor Demand Prediction",
-                  desc: "Manual tracking fails to capture real-time trends and student preferences accurately.",
-                },
-                {
-                  icon: Clock,
-                  title: "Queue Frustration",
-                  desc: "Peak hour rushes result in long wait times and suboptimal dining experiences.",
-                }
+                { icon: Trash2, title: "High Food Waste", desc: "Massive scale production without precise demand knowledge leads to tons of daily waste." },
+                { icon: AlertCircle, title: "Uncertainty Drives Excess", desc: "Not knowing how many students will show up causes messes to overprepare every meal." },
+                { icon: TrendingDown, title: "Poor Demand Prediction", desc: "Manual tracking fails to capture real-time trends and student preferences accurately." },
+                { icon: Navigation2, title: "Queue Frustration", desc: "Peak hour rushes result in long wait times and suboptimal dining experiences." }
               ].map((item, i) => (
-                <motion.div 
-                  key={i}
-                  whileHover={{ y: -10 }}
-                  className="bg-[#F9FBFA] p-8 rounded-[2rem] border border-slate-100 flex flex-col items-start gap-4 transition-all duration-300"
-                >
+                <motion.div key={i} whileHover={{ y: -10 }} className="bg-[#F9FBFA] p-8 rounded-[2rem] border border-slate-100 flex flex-col items-start gap-4 transition-all duration-300">
                   <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-primary shadow-sm border border-slate-50">
                     <item.icon size={24} />
                   </div>
@@ -141,165 +122,164 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Solution Section (Pillars) */}
-      <section id="solution" className="py-32 px-6">
+      {/* 2. Solution Section */}
+      <section id="solution" className="py-32 px-6 scroll-mt-20">
         <div className="max-w-7xl mx-auto text-center space-y-24">
           <div className="space-y-6">
+            <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-4">
+              <Zap size={14} className="text-primary-dark" />
+              <span className="text-[10px] font-black uppercase tracking-widest text-primary-dark italic">Our Solution</span>
+            </div>
             <h2 className="text-4xl md:text-7xl font-black text-slate-900 tracking-tight">
-              One platform. <br /> <span className="text-primary italic tracking-tighter">End-to-end impact.</span>
+              Behavior design + <br /> <span className="text-primary italic tracking-tighter">smart flow system</span>
             </h2>
-            <p className="text-slate-500 font-medium text-xl">The three pillars of the EcoEats ecosystem.</p>
+            <p className="text-slate-500 font-medium text-xl max-w-2xl mx-auto">
+              A friction-free ecosystem where smart design meets operational efficiency. No apps, no logins, just clean intelligent dining.
+            </p>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Precision Management",
-                desc: "Live student turnout tracking and prep-waste analytics for mess administrators.",
-                icon: Layers,
-                color: "bg-green-50 text-green-600",
-                points: ["Waste Analytics", "Demand Forecasting", "Cost Optimization"]
-              },
-              {
-                title: "Student Empowerment",
-                desc: "A frictionless web portal for students to indicate presence and get rewarded.",
-                icon: Heart,
-                color: "bg-primary/10 text-primary-dark",
-                points: ["One-Click Feedback", "Sustainability Points", "Eco-Coupons"]
-              },
-              {
-                title: "Circulary Economy",
-                desc: "Turning waste into value through gamification and community milestones.",
-                icon: Zap,
-                color: "bg-orange-50 text-orange-600",
-                points: ["Campus Leaderboard", "Waste-to-Wealth", "Verified Impact"]
-              }
-            ].map((pillar, i) => (
-              <motion.div 
-                key={i}
-                whileHover={{ y: -12 }}
-                className="bg-white p-12 rounded-[3.5rem] border border-slate-100 text-left flex flex-col shadow-xl shadow-slate-200/20"
-              >
-                <div className={`w-16 h-16 ${pillar.color} rounded-2xl flex items-center justify-center mb-10`}>
-                  <pillar.icon size={32} />
+          <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+             <div className="bg-white p-12 rounded-[3.5rem] border border-slate-100 text-left space-y-6 shadow-xl shadow-slate-200/20">
+                <div className="w-16 h-16 bg-primary/10 text-primary-dark rounded-2xl flex items-center justify-center">
+                    <Heart size={32} />
                 </div>
-                <h3 className="text-2xl font-black text-slate-900 mb-6 tracking-tight">{pillar.title}</h3>
-                <p className="text-slate-500 font-medium leading-relaxed mb-8">{pillar.desc}</p>
-                <ul className="space-y-4 mt-auto pt-8 border-t border-slate-50">
-                  {pillar.points.map((pt) => (
-                    <li key={pt} className="flex items-center gap-3">
-                      <CheckCircle2 size={18} className="text-primary" />
-                      <span className="text-slate-800 font-bold text-sm tracking-tight">{pt}</span>
-                    </li>
-                  ))}
-                </ul>
+                <h3 className="text-3xl font-black text-slate-900 italic uppercase">Behavior Design</h3>
+                <p className="text-slate-500 font-medium leading-relaxed">
+                   Leveraging psychological nudges and gamification to encourage students to pre-indicate meal choices and reduce plate waste.
+                </p>
+             </div>
+             <div className="bg-slate-900 p-12 rounded-[3.5rem] text-left space-y-6 shadow-2xl shadow-slate-900/40">
+                <div className="w-16 h-16 bg-white/10 text-primary rounded-2xl flex items-center justify-center">
+                    <Share2 size={32} />
+                </div>
+                <h3 className="text-3xl font-black text-white italic uppercase">Flow Optimization</h3>
+                <p className="text-slate-400 font-medium leading-relaxed">
+                   Smart queue balancing and dual-serving flows to ensure every student spends less time waiting and more time eating.
+                </p>
+             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Features Section */}
+      <section id="features" className="py-32 px-6 bg-white rounded-[4rem] scroll-mt-20">
+        <div className="max-w-7xl mx-auto space-y-20">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-10">
+            <div className="space-y-6">
+              <div className="w-12 h-1 bg-primary rounded-full" />
+              <h2 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight leading-tight uppercase italic">Key Features</h2>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { title: "Live Rush Indicator", icon: Clock, desc: "Real-time occupancy labels (Low/Medium/High) to help students avoid peak rushes.", badge: "Real-time" },
+              { title: "Dual Serving Flow", icon: Layers, desc: "Multi-point distribution logic that reduces mess wait times by up to 50%.", badge: "Efficiency" },
+              { title: "Smart Portion Nudge", icon: Zap, desc: "Portion control systems that encourage 'start small, refill freely' habits.", badge: "Behavior" },
+              { title: "Waste Awareness Board", icon: BarChart3, desc: "Visualizing meal-level waste data in relatable units (e.g., kgs saved per day).", badge: "Awareness" },
+              { title: "Peak Time Insights", icon: TrendingUp, desc: "Data-driven prep cycles that help staff prepare exactly what's needed.", badge: "Logistics" }
+            ].map((f, i) => (
+              <motion.div key={i} whileHover={{ y: -8 }} className="p-10 bg-[#F9FBFA] border border-slate-100 rounded-[2.5rem] flex flex-col justify-between group transition-all hover:bg-white hover:shadow-2xl hover:shadow-slate-100">
+                <div className="space-y-6">
+                  <div className="flex items-center justify-between">
+                    <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-primary-dark shadow-sm border border-slate-50 group-hover:scale-110 transition-transform">
+                      <f.icon size={28} />
+                    </div>
+                    <span className="text-[9px] font-black uppercase tracking-widest text-slate-300 px-3 py-1 bg-white rounded-full border border-slate-50">{f.badge}</span>
+                  </div>
+                  <h4 className="text-2xl font-black text-slate-900 italic tracking-tighter uppercase">{f.title}</h4>
+                  <p className="text-slate-500 font-medium text-sm leading-relaxed">{f.desc}</p>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Workflow Section */}
-      <section id="workflow" className="py-32 px-6 bg-slate-900 rounded-[4rem] text-white overflow-hidden relative group">
-        <div className="absolute top-0 right-0 w-[60vw] h-full bg-primary/5 -skew-x-12 translate-x-1/2 -z-0" />
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="flex flex-col lg:flex-row gap-20 items-center">
-            <div className="lg:w-1/2 space-y-10">
-              <div className="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full">
-                 <Zap size={14} className="text-primary" />
-                 <span className="text-[10px] font-black uppercase tracking-widest">Seamless Integration</span>
-              </div>
-              <h2 className="text-4xl md:text-6xl font-black tracking-tight leading-tight">
-                No apps. <br /><span className="text-primary italic">Just impact.</span>
-              </h2>
-              <div className="space-y-8">
-                {[
-                  { step: "01", title: "Scan & Register", d: "Scan QR at mess entry—no app download required." },
-                  { step: "02", title: "Indicate Presence", d: "Tap 'Eating' button to help kitchen predict demand." },
-                  { step: "03", title: "Earn Rewards", d: "Get sustainability points for every meal pre-aligned." }
-                ].map((item, i) => (
-                  <div key={i} className="flex gap-6 group/item">
-                    <span className="text-primary font-black text-2xl italic group-hover/item:scale-110 transition-transform">{item.step}</span>
-                    <div>
-                      <h4 className="font-bold text-xl mb-1">{item.title}</h4>
-                      <p className="text-slate-400 font-medium">{item.d}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="lg:w-1/2 w-full aspect-video bg-white/5 border border-white/10 rounded-[3rem] p-12 flex items-center justify-center relative shadow-2xl overflow-hidden">
-               <div className="absolute inset-0 bg-primary/10 blur-[120px] -z-10" />
-               <div className="text-center font-black italic text-4xl text-white/20 select-none">PORTAL INTERFACE DEMO</div>
-               {/* Mock UI Element */}
-               <motion.div 
-                 initial={{ y: 50, opacity: 0 }}
-                 whileInView={{ y: 0, opacity: 1 }}
-                 className="absolute bottom-[-10%] left-1/2 -translate-x-1/2 bg-white w-2/3 p-8 rounded-t-[2.5rem] shadow-2xl"
-               >
-                 <div className="flex items-center justify-between mb-6">
-                    <div className="flex items-center gap-2">
-                       <div className="w-8 h-8 bg-primary rounded-lg" />
-                       <div className="h-4 w-24 bg-slate-100 rounded-full" />
-                    </div>
-                    <div className="h-4 w-12 bg-slate-50 rounded-full" />
-                 </div>
-                 <div className="space-y-3">
-                   <div className="h-12 w-full bg-primary/20 rounded-xl" />
-                   <div className="h-12 w-full bg-slate-50 rounded-xl" />
-                 </div>
-               </motion.div>
-            </div>
+      {/* 4. Workflow Section */}
+      <section id="workflow" className="py-32 px-6 bg-slate-900 rounded-[4rem] text-white relative overflow-hidden scroll-mt-20">
+        <div className="absolute top-0 right-0 w-[40vw] h-full bg-primary/5 -skew-x-12 translate-x-1/2" />
+        <div className="max-w-7xl mx-auto space-y-24 relative z-10">
+          <div className="text-center space-y-6 max-w-3xl mx-auto">
+             <h2 className="text-4xl md:text-7xl font-black tracking-tight uppercase italic leading-none">How It Works</h2>
+             <p className="text-slate-400 font-medium text-lg uppercase tracking-widest italic">ecoeats System Flow Visualization</p>
+          </div>
+
+          <div className="grid lg:grid-cols-5 gap-6">
+            {[
+              { id: "S", t: "Student Entry", c: "bg-purple-500", icon: Search, items: ["Entry Tracking", "Queue Balancing"] },
+              { id: "F", t: "Flow Management", c: "bg-blue-500", icon: Play, items: ["Live Indicators", "Dual Lines"] },
+              { id: "P", t: "Portion Control", c: "bg-primary-dark", icon: Zap, items: ["Preference Sync", "Smart Nudges"] },
+              { id: "T", t: "Waste Tracking", c: "bg-orange-500", icon: BarChart3, items: ["Relatable Units", "Visual Boards"] },
+              { id: "A", t: "Staff Insights", c: "bg-amber-500", icon: Settings, items: ["Prep Optimization", "Data Analysis"] }
+            ].map((node, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-white/5 border border-white/10 p-8 rounded-[2.5rem] flex flex-col gap-8 group hover:bg-white/10 transition-all"
+              >
+                <div className={`w-14 h-14 ${node.c} text-white rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform`}>
+                   <node.icon size={24} />
+                </div>
+                <div className="space-y-4">
+                   <h5 className="text-lg font-black italic uppercase tracking-tighter text-white">{node.t}</h5>
+                   <ul className="space-y-2">
+                     {node.items.map((item) => (
+                       <li key={item} className="text-[10px] font-black uppercase tracking-widest text-slate-400 flex items-center gap-2">
+                         <ChevronRight size={10} className="text-primary" /> {item}
+                       </li>
+                     ))}
+                   </ul>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="bg-primary p-12 rounded-[3.5rem] text-slate-900 border border-white shadow-2xl shadow-primary/20 text-center max-w-4xl mx-auto relative group hover:scale-[1.02] transition-transform">
+             <div className="absolute inset-0 bg-white/20 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
+             <p className="text-2xl md:text-4xl font-black italic tracking-tighter uppercase relative z-10">
+                "A seamless mess experience with reduced waste, better flow, and happier students & staff"
+             </p>
           </div>
         </div>
       </section>
 
-      {/* Impact Section */}
-      <section id="impact" className="py-32 px-6">
-        <div className="max-w-7xl mx-auto">
+      {/* 5. Impact Section */}
+      <section id="impact" className="py-32 px-6 scroll-mt-20">
+        <div className="max-w-7xl mx-auto space-y-24">
+          <div className="flex flex-col items-center text-center gap-6">
+             <h2 className="text-4xl md:text-7xl font-black text-slate-900 tracking-tight uppercase italic underline decoration-primary decoration-8 underline-offset-8">Impact</h2>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
              {[
-               { val: "1.2 Tons", label: "Waste Prevented" },
-               { val: "₹1.4L", label: "Cost Savings" },
-               { val: "500+", label: "Daily Users" },
-               { val: "98%", label: "Accuracy Target" }
+               { val: "40%", label: "Reduced Food Waste", icon: Trash2 },
+               { val: "85%", label: "Student Satisfaction", icon: Heart },
+               { val: "30%", label: "Staff Efficiency", icon: Zap },
+               { val: "Active", label: "Sustainable Campus", icon: Leaf }
              ].map((m, i) => (
-               <div key={i} className="bg-white p-10 rounded-[3rem] text-center border border-slate-100 shadow-xl shadow-slate-200/10">
-                  <div className="text-4xl font-black text-slate-900 italic tracking-tighter mb-2">{m.val}</div>
-                  <div className="text-xs font-bold uppercase tracking-widest text-primary-dark">{m.label}</div>
+               <div key={i} className="bg-white p-12 rounded-[3.5rem] text-center border border-slate-100 shadow-xl shadow-slate-200/10 group hover:border-primary transition-all">
+                  <div className="w-14 h-14 bg-primary/10 text-primary-dark rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-sm group-hover:scale-110 transition-transform">
+                    <m.icon size={24} />
+                  </div>
+                  <div className="text-5xl font-black text-slate-900 italic tracking-tighter mb-4">{m.val}</div>
+                  <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">{m.label}</div>
                </div>
              ))}
           </div>
-        </div>
-      </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-32 px-6 bg-white rounded-t-[4rem]">
-        <div className="max-w-7xl mx-auto">
-          <div className="bg-[#F9FBFA] rounded-[4rem] p-12 md:p-24 flex flex-col lg:flex-row items-center gap-20 shadow-sm border border-slate-100/50">
-             <div className="lg:w-1/2 space-y-8">
-                <h2 className="text-4xl md:text-7xl font-black text-slate-900 tracking-tighter leading-tight">
-                  Interested <br /><span className="text-primary italic">partnerships?</span>
-                </h2>
-                <p className="text-slate-500 text-lg font-medium leading-relaxed max-w-sm">
-                  Bring EcoEats to your university and join the sustainability movement.
-                </p>
-                <Link href="/contact" className="btn-primary inline-flex mt-8 px-12 py-5 font-black text-lg shadow-xl shadow-primary/20">
-                   Get in Touch
-                </Link>
-             </div>
-             <div className="lg:w-1/2 w-full grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="p-8 bg-white rounded-3xl border border-slate-100 shadow-sm">
-                   <Mail className="text-primary mb-4" size={24} />
-                   <h4 className="font-bold text-slate-900 mb-2">Email Us</h4>
-                   <p className="text-slate-500 text-sm">work@laukiklandage.com</p>
-                </div>
-                <div className="p-8 bg-white rounded-3xl border border-slate-100 shadow-sm">
-                   <Linkedin className="text-primary mb-4" size={24} />
-                   <h4 className="font-bold text-slate-900 mb-2">Connect</h4>
-                   <p className="text-slate-500 text-sm">Team LinkedIn</p>
-                </div>
-             </div>
+          <div className="bg-[#111827] rounded-[4rem] p-12 md:p-24 text-center space-y-10 relative overflow-hidden group shadow-2xl">
+              <div className="absolute top-0 left-0 w-full h-full bg-primary/5 -z-0 blur-3xl" />
+              <h3 className="text-4xl md:text-7xl font-black text-white italic tracking-tighter uppercase relative z-10 leading-none">
+                 Ready to transform <br /><span className="text-primary">your mess?</span>
+              </h3>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-6 relative z-10">
+                 <Link href="/contact" className="btn-primary px-12 py-5 text-xl font-black shadow-2xl shadow-primary/20">
+                    Get in Touch
+                 </Link>
+              </div>
           </div>
         </div>
       </section>

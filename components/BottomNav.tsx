@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, BarChart2, Gift, MessageCircle, Trophy } from "lucide-react";
+import { Home, BarChart2, Gift, Utensils, Calendar } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function BottomNav() {
@@ -10,10 +10,10 @@ export default function BottomNav() {
 
     const navItems = [
         { name: "Home", icon: Home, path: "/demo/student" },
-        { name: "Feedback", icon: MessageCircle, path: "/demo/student/feedback" },
+        { name: "Menu", icon: Utensils, path: "/demo/student/menu" },
+        { name: "Plan", icon: Calendar, path: "/demo/student/plan" },
         { name: "Stats", icon: BarChart2, path: "/demo/student/stats" },
         { name: "Rewards", icon: Gift, path: "/demo/student/rewards" },
-        { name: "Profile", icon: Trophy, path: "/demo/student/achievements" },
     ];
 
     // Only show on student demo pages

@@ -15,7 +15,10 @@ import {
     FileText,
     LogOut,
     Leaf,
-    Play
+    Play,
+    Utensils,
+    Calendar,
+    Activity
 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -26,6 +29,8 @@ export default function Sidebar() {
 
     const studentNav = [
         { name: "Dashboard", icon: Home, path: "/demo/student" },
+        { name: "Weekly Menu", icon: Utensils, path: "/demo/student/menu" },
+        { name: "My Plan", icon: Calendar, path: "/demo/student/plan" },
         { name: "Feedback", icon: MessageCircle, path: "/demo/student/feedback" },
         { name: "Waste Stats", icon: BarChart2, path: "/demo/student/stats" },
         { name: "Rewards", icon: Gift, path: "/demo/student/rewards" },
@@ -34,6 +39,7 @@ export default function Sidebar() {
 
     const adminNav = [
         { name: "Overview", icon: ShieldCheck, path: "/demo/admin" },
+        { name: "Meal Insights", icon: Activity, path: "/demo/admin/insights" },
         { name: "Waste Analytics", icon: BarChart2, path: "/demo/admin/analytics" },
         { name: "Peak Times", icon: Clock, path: "/demo/admin/peak-times" },
         { name: "Preparation", icon: Zap, path: "/demo/admin/preparation" },
