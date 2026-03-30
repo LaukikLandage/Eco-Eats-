@@ -70,7 +70,7 @@ export default function PreparationPage() {
                              <div className="h-3 w-full bg-white/5 rounded-full border border-white/10 overflow-hidden">
                                  <motion.div initial={{ width: 0 }} animate={{ width: "94%" }} className="h-full bg-primary rounded-full shadow-[0_0_20px_rgba(143,236,120,0.5)]" />
                              </div>
-                             <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest text-center italic">94% Predicted accuracy across 7 Mess units</p>
+                             <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest text-center italic">94% Predicted accuracy based on Weekly Student Selections</p>
                          </div>
 
                          <div className="grid grid-cols-2 gap-6">

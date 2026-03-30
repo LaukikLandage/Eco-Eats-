@@ -11,7 +11,6 @@ export default function BottomNav() {
     const navItems = [
         { name: "Home", icon: Home, path: "/demo/student" },
         { name: "Menu", icon: Utensils, path: "/demo/student/menu" },
-        { name: "Plan", icon: Calendar, path: "/demo/student/plan" },
         { name: "Stats", icon: BarChart2, path: "/demo/student/stats" },
         { name: "Rewards", icon: Gift, path: "/demo/student/rewards" },
     ];

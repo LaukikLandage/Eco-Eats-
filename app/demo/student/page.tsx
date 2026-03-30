@@ -12,7 +12,6 @@ export default function StudentDashboard() {
         { name: "Waste Stats", icon: BarChart2, path: "/demo/student/stats", color: "text-blue-500", bg: "bg-blue-50" },
         { name: "Reward Store", icon: Gift, path: "/demo/student/rewards", color: "text-purple-500", bg: "bg-purple-50" },
         { name: "Feedback", icon: MessageCircle, path: "/demo/student/feedback", color: "text-orange-500", bg: "bg-orange-50" },
-        { name: "Leaderboard", icon: Trophy, path: "/demo/student/achievements", color: "text-amber-500", bg: "bg-amber-50" },
     ];
 
     return (
@@ -31,44 +30,7 @@ export default function StudentDashboard() {
                 </div>
             </section>
 
-            {/* Main CTA: QR Scanner Simulation */}
-            <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileHover={{ y: -5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="bg-primary p-12 rounded-[3.5rem] text-white flex flex-col items-center gap-8 shadow-[0_40px_80px_rgba(141,198,63,0.3)] relative overflow-hidden group"
-            >
-                <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 blur-3xl group-hover:bg-white/20 transition-all duration-700"></div>
-                
-                <div className="w-28 h-28 bg-white/20 backdrop-blur-md rounded-[2.5rem] flex items-center justify-center border border-white/30 shadow-inner group-hover:rotate-12 transition-transform duration-500">
-                    <QrCode size={56} className="text-white" />
-                </div>
 
-                <div className="text-center space-y-3">
-                    <h3 className="text-3xl font-black tracking-tighter leading-tight uppercase italic">Instant Verification</h3>
-                    <p className="text-white/80 text-sm font-medium uppercase tracking-widest scale-90 opacity-80">Scan QR to verify meal & earn impact points</p>
-                </div>
-
-                <button 
-                  onClick={() => {
-                    setScanned(true);
-                    setTimeout(() => setScanned(false), 3000);
-                  }}
-                  className="bg-slate-900 text-white hover:bg-slate-800 font-black py-6 px-16 rounded-[2rem] text-base flex items-center gap-4 active:scale-95 transition-all w-full justify-center shadow-2xl relative overflow-hidden"
-                >
-                    {scanned ? (
-                        <motion.div initial={{ scale: 0.5 }} animate={{ scale: 1 }} className="flex items-center gap-2">
-                           <Leaf size={24} className="text-primary animate-bounce" /> 
-                           <span className="italic uppercase">Verified! +50 Pts</span>
-                        </motion.div>
-                    ) : (
-                        <>
-                           <QrCode size={22} className="text-primary" /> 
-                           <span className="italic uppercase tracking-widest">Simulate QR Scan</span>
-                        </>
-                    )}
-                </button>
-            </motion.div>
 
             {/* Feature Grid */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -128,21 +90,6 @@ export default function StudentDashboard() {
                         </div>
                     </div>
 
-                    <div className="bg-white border border-slate-50 p-8 rounded-[3rem] flex items-center justify-between group hover:border-amber-400 transition-all shadow-sm">
-                        <div className="flex items-center gap-5">
-                            <div className="w-16 h-16 bg-amber-50 rounded-[1.5rem] flex items-center justify-center text-amber-500 shadow-inner group-hover:scale-110 transition-transform">
-                                <Zap size={32} />
-                            </div>
-                            <div>
-                                <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400">Community Rank</h4>
-                                <p className="text-[9px] font-black text-primary-dark mt-2 bg-primary/10 px-2 py-0.5 rounded-full uppercase tracking-widest">Global Top 5%</p>
-                            </div>
-                        </div>
-                        <div className="text-right">
-                            <span className="text-2xl font-black text-amber-500 italic tracking-tighter">#42</span>
-                            <span className="text-[9px] text-slate-400 block font-black uppercase tracking-tighter mt-1">Leaderboard</span>
-                        </div>
-                    </div>
                 </div>
             </section>
         </div>

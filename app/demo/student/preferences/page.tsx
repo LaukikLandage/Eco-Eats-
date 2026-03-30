@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ChevronLeft, X, Check, Save, Zap, Heart, Ban } from "lucide-react";
+import { ChevronLeft, X, Check, Save, Zap, Heart, Ban, Home } from "lucide-react";
 import Link from "next/link";
 import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
@@ -151,10 +151,10 @@ function PreferenceContent() {
                         )}
                     </button>
                     <Link 
-                        href="/demo/student/plan"
+                        href="/demo/student"
                         className="pointer-events-auto flex-1 bg-white border border-slate-100 rounded-[2rem] flex items-center justify-center shadow-xl hover:bg-slate-50 active:scale-95 transition-all text-slate-400 hover:text-primary"
                     >
-                        <Zap size={22} fill="currentColor" onClick={handleSave} />
+                        <Home size={22} onClick={() => {}} />
                     </Link>
                 </div>
             </div>

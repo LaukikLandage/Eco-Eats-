@@ -30,11 +30,9 @@ export default function Sidebar() {
     const studentNav = [
         { name: "Dashboard", icon: Home, path: "/demo/student" },
         { name: "Weekly Menu", icon: Utensils, path: "/demo/student/menu" },
-        { name: "My Plan", icon: Calendar, path: "/demo/student/plan" },
         { name: "Feedback", icon: MessageCircle, path: "/demo/student/feedback" },
         { name: "Waste Stats", icon: BarChart2, path: "/demo/student/stats" },
         { name: "Rewards", icon: Gift, path: "/demo/student/rewards" },
-        { name: "Achievements", icon: Trophy, path: "/demo/student/achievements" },
     ];
 
     const adminNav = [

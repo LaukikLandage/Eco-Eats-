@@ -103,10 +103,9 @@ export default function LandingPage() {
                 Food waste in mess halls is a growing concern that impacts both operations and environments.
               </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
               {[
                 { icon: Trash2, title: "High Food Waste", desc: "Massive scale production without precise demand knowledge leads to tons of daily waste." },
-                { icon: AlertCircle, title: "Uncertainty Drives Excess", desc: "Not knowing how many students will show up causes messes to overprepare every meal." },
                 { icon: TrendingDown, title: "Poor Demand Prediction", desc: "Manual tracking fails to capture real-time trends and student preferences accurately." },
                 { icon: Navigation2, title: "Queue Frustration", desc: "Peak hour rushes result in long wait times and suboptimal dining experiences." }
               ].map((item, i) => (
@@ -172,13 +171,12 @@ export default function LandingPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
             {[
               { title: "Live Rush Indicator", icon: Clock, desc: "Real-time occupancy labels (Low/Medium/High) to help students avoid peak rushes.", badge: "Real-time" },
               { title: "Dual Serving Flow", icon: Layers, desc: "Multi-point distribution logic that reduces mess wait times by up to 50%.", badge: "Efficiency" },
               { title: "Smart Portion Nudge", icon: Zap, desc: "Portion control systems that encourage 'start small, refill freely' habits.", badge: "Behavior" },
               { title: "Waste Awareness Board", icon: BarChart3, desc: "Visualizing meal-level waste data in relatable units (e.g., kgs saved per day).", badge: "Awareness" },
-              { title: "Peak Time Insights", icon: TrendingUp, desc: "Data-driven prep cycles that help staff prepare exactly what's needed.", badge: "Logistics" }
             ].map((f, i) => (
               <motion.div key={i} whileHover={{ y: -8 }} className="p-8 md:p-10 bg-[#F9FBFA] border border-slate-100 rounded-[2rem] md:rounded-[2.5rem] flex flex-col justify-between group transition-all hover:bg-white hover:shadow-2xl hover:shadow-slate-100">
                 <div className="space-y-4 md:space-y-6">
@@ -255,22 +253,8 @@ export default function LandingPage() {
              <h2 className="text-3xl md:text-7xl font-black text-slate-900 tracking-tight uppercase italic underline decoration-primary decoration-4 md:decoration-8 underline-offset-4 md:underline-offset-8">Impact</h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-             {[
-               { val: "40%", label: "Reduced Food Waste", icon: Trash2 },
-               { val: "85%", label: "Student Satisfaction", icon: Heart },
-               { val: "30%", label: "Staff Efficiency", icon: Zap },
-               { val: "Active", label: "Sustainable Campus", icon: Leaf }
-             ].map((m, i) => (
-               <div key={i} className="bg-white p-8 md:p-12 rounded-[2rem] md:rounded-[3.5rem] text-center border border-slate-100 shadow-xl shadow-slate-200/10 group hover:border-primary transition-all">
-                  <div className="w-12 h-12 md:w-14 md:h-14 bg-primary/10 text-primary-dark rounded-2xl flex items-center justify-center mx-auto mb-6 md:mb-8 shadow-sm group-hover:scale-110 transition-transform">
-                    <m.icon size={20} className="md:size-[24px]" />
-                  </div>
-                  <div className="text-4xl md:text-5xl font-black text-slate-900 italic tracking-tighter mb-2 md:mb-4">{m.val}</div>
-                  <div className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">{m.label}</div>
-               </div>
-             ))}
-          </div>
+          {/* Removed Impact stats cards as requested. Bridge section below. */}
+
 
           <div className="bg-[#111827] rounded-[2.5rem] md:rounded-[4rem] p-8 md:p-24 text-center space-y-8 md:space-y-10 relative overflow-hidden group shadow-2xl">
               <div className="absolute top-0 left-0 w-full h-full bg-primary/5 -z-0 blur-3xl" />

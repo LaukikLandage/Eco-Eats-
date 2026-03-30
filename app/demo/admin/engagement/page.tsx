@@ -23,63 +23,32 @@ export default function EngagementPage() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="flex flex-col gap-8">
+                {/* Featured Engagement Insight: Feedback Loops */}
                 <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="bg-white p-10 rounded-[3.5rem] border border-slate-100 flex flex-col justify-between shadow-sm group hover:shadow-2xl hover:shadow-slate-100 transition-all cursor-pointer"
+                    className="bg-white p-12 md:p-20 rounded-[4rem] border border-slate-100 flex flex-col md:flex-row items-center justify-between gap-12 shadow-xl shadow-slate-100/50 hover:shadow-2xl hover:shadow-slate-200 transition-all group"
                 >
-                    <div className="flex items-center justify-between">
-                        <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-primary-dark group-hover:scale-110 transition-transform duration-500">
-                           <Star size={32} fill="currentColor" />
+                    <div className="flex flex-col items-center md:items-start gap-8 flex-1">
+                        <div className="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center text-primary-dark group-hover:scale-110 transition-all duration-500">
+                           <MessageCircle size={40} />
                         </div>
-                        <span className="text-[10px] font-black text-primary-dark uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full">+12k pts</span>
-                    </div>
-                    <div className="space-y-4 pt-10">
-                        <h4 className="text-2xl font-black text-slate-900 italic tracking-tight uppercase leading-none">Reward Velocity</h4>
-                        <p className="text-slate-500 font-bold text-xs uppercase tracking-widest italic opacity-80 leading-relaxed">Rate at which students redeem sustainability vouchers</p>
-                    </div>
-                </motion.div>
-
-                <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 }}
-                    className="bg-primary p-10 rounded-[3.5rem] flex flex-col justify-between shadow-2xl shadow-primary/20 group hover:scale-[1.02] transition-all cursor-pointer"
-                >
-                    <div className="flex items-center justify-between">
-                        <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center text-slate-900 group-hover:rotate-12 transition-transform duration-500">
-                           <MessageCircle size={32} />
+                        <div className="space-y-4 text-center md:text-left">
+                            <h4 className="text-4xl md:text-6xl font-black text-slate-900 italic tracking-tight uppercase leading-none">Feedback Loops</h4>
+                            <p className="text-slate-500 font-bold text-lg uppercase tracking-widest italic opacity-80 leading-relaxed max-w-xl">Average 462 sentiment syncs daily per mess unit</p>
                         </div>
-                        <div className="flex -space-x-3">
-                            {[1,2,3].map(i => (
-                                <div key={i} className="w-8 h-8 rounded-full border-2 border-primary bg-slate-900 overflow-hidden">
-                                     <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${i * 12}`} alt="User" />
+                    </div>
+                    
+                    <div className="flex flex-col items-center gap-6">
+                        <div className="flex -space-x-4">
+                            {[1, 2, 3, 4, 5].map(i => (
+                                <div key={i} className="w-16 h-16 rounded-full border-4 border-white bg-slate-900 overflow-hidden shadow-lg group-hover:translate-y-[-10px] transition-transform duration-500" style={{ transitionDelay: `${i * 100}ms` }}>
+                                     <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${i * 123}`} alt="User" />
                                 </div>
                             ))}
                         </div>
-                    </div>
-                    <div className="space-y-4 pt-10">
-                        <h4 className="text-2xl font-black text-slate-900 italic tracking-tight uppercase leading-none text-slate-900">Feedback Loops</h4>
-                        <p className="text-slate-900 font-black text-xs uppercase tracking-widest italic opacity-60 leading-relaxed">Average 462 sentiment syncs daily per mess unit</p>
-                    </div>
-                </motion.div>
-
-                <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 }}
-                    className="bg-slate-900 p-10 rounded-[3.5rem] border border-slate-800 flex flex-col justify-between shadow-2xl shadow-slate-900/40 text-white group hover:shadow-primary/10 transition-all cursor-pointer"
-                >
-                    <div className="flex items-center justify-between">
-                        <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center text-primary group-hover:scale-125 transition-transform duration-700">
-                           <Trophy size={32} />
-                        </div>
-                        <span className="text-[10px] font-black text-primary uppercase tracking-widest border border-primary/20 bg-primary/5 px-3 py-1 rounded-full">Top 3% Campus</span>
-                    </div>
-                    <div className="space-y-4 pt-10">
-                        <h4 className="text-2xl font-black italic tracking-tight uppercase leading-none text-white">Gamification Index</h4>
-                        <p className="text-slate-400 font-bold text-xs uppercase tracking-widest italic opacity-60 leading-relaxed">Engagement ranking based on sustainability leaderboard</p>
+                        <span className="text-[10px] font-black text-primary-dark uppercase tracking-[0.3em] bg-primary/10 px-6 py-2 rounded-full">Active Community Analytics</span>
                     </div>
                 </motion.div>
             </div>
