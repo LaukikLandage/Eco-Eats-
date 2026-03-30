@@ -10,9 +10,8 @@ export default function BottomNav() {
 
     const navItems = [
         { name: "Home", icon: Home, path: "/demo/student" },
-        { name: "Menu", icon: Utensils, path: "/demo/student/menu" },
+        { name: "Preferences", icon: Utensils, path: "/demo/student/menu" },
         { name: "Stats", icon: BarChart2, path: "/demo/student/stats" },
-        { name: "Rewards", icon: Gift, path: "/demo/student/rewards" },
     ];
 
     // Only show on student demo pages
