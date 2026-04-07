@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, BarChart2, Gift, Utensils, Calendar } from "lucide-react";
+import { Home, BarChart2, Gift, Utensils, Calendar, ShoppingBag } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function BottomNav() {
@@ -10,7 +10,8 @@ export default function BottomNav() {
 
     const navItems = [
         { name: "Home", icon: Home, path: "/demo/student" },
-        { name: "Preferences", icon: Utensils, path: "/demo/student/menu" },
+        { name: "Wallet", icon: Calendar, path: "/demo/student/wallet" },
+        { name: "Market", icon: ShoppingBag, path: "/demo/student/marketplace" },
         { name: "Stats", icon: BarChart2, path: "/demo/student/stats" },
     ];
 
