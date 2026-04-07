@@ -3,7 +3,7 @@
 import Sidebar from "@/components/Sidebar";
 import BottomNav from "@/components/BottomNav";
 import { usePathname } from "next/navigation";
-import { Play, Bell, ShieldCheck, User } from "lucide-react";
+import { Bell, ShieldCheck, User } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function DemoLayout({
@@ -42,10 +42,6 @@ export default function DemoLayout({
                 <header className="sticky top-0 z-[60] w-full bg-white/90 backdrop-blur-xl border-b border-slate-100 h-20 px-6 flex items-center justify-between shrink-0">
                     <div className="flex items-center gap-4">
                         <h2 className="text-sm font-black text-slate-900 uppercase tracking-widest italic leading-none">{getPageTitle(pathname)}</h2>
-                        <div className="hidden sm:flex items-center gap-2 bg-primary/10 border border-primary/20 px-3 py-1.5 rounded-full">
-                            <Play size={10} className="text-primary-dark fill-primary-dark" />
-                            <span className="text-[10px] font-black uppercase tracking-widest text-primary-dark">Demo Mode</span>
-                        </div>
                     </div>
 
                     <div className="flex items-center gap-3">
@@ -84,17 +80,7 @@ export default function DemoLayout({
                 <BottomNav />
             </div>
 
-            {/* Floating Action Button - Only on student demo dashboard */}
-            {isStudent && (
-                <motion.button
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="fixed bottom-24 right-6 md:right-10 md:bottom-10 z-[100] w-16 h-16 bg-slate-900 text-primary rounded-2xl flex items-center justify-center shadow-2xl shadow-slate-900/40 border border-white/10 group overflow-hidden"
-                >
-                    <div className="absolute inset-0 bg-primary/10 -z-10 blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500" />
-                    <Play size={24} fill="currentColor" />
-                </motion.button>
-            )}
+
         </div>
     );
 }
