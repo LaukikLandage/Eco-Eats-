@@ -26,6 +26,9 @@ model Student {
   rewardRedemptions   RewardRedemption[]
   sentTransactions     CreditTransaction[] @relation("SentCredits")
   receivedTransactions CreditTransaction[] @relation("ReceivedCredits")
+  
+  mealCredits          MealCredit[]        @relation("Owner")
+  listings             MarketplaceListing[] @relation("Seller")
 }
 
 model Feedback {
@@ -52,13 +55,38 @@ model RewardRedemption {
 
 model CreditTransaction {
   id         String   @id @default(cuid())
-  senderId   String
-  sender     Student  @relation("SentCredits", fields: [senderId], references: [id])
-  receiverId String
-  receiver   Student  @relation("ReceivedCredits", fields: [receiverId], references: [id])
+  senderId   String?
+  sender     Student? @relation("SentCredits", fields: [senderId], references: [id])
+  receiverId String?
+  receiver   Student? @relation("ReceivedCredits", fields: [receiverId], references: [id])
   amount     Float
+  type       String   @default("TRANSFER") // TRANSFER, SALE, DONATION
   note       String?
   createdAt  DateTime @default(now())
+}
+
+model MealCredit {
+  id          String   @id @default(cuid())
+  studentId   String
+  student     Student  @relation("Owner", fields: [studentId], references: [id])
+  type        String   // BREAKFAST, LUNCH, DINNER
+  date        DateTime
+  isUsed      Boolean  @default(false)
+  isListed    Boolean  @default(false)
+  isDonated   Boolean  @default(false)
+  listing     MarketplaceListing?
+  createdAt   DateTime @default(now())
+}
+
+model MarketplaceListing {
+  id            String     @id @default(cuid())
+  sellerId      String
+  seller        Student    @relation("Seller", fields: [sellerId], references: [id])
+  mealCreditId  String     @unique
+  mealCredit    MealCredit @relation(fields: [mealCreditId], references: [id])
+  price         Float
+  isActive      Boolean    @default(true)
+  createdAt     DateTime   @default(now())
 }
 
 model WasteData {
@@ -67,3 +95,4 @@ model WasteData {
   wasteKg   Float
   mealsRescued Int
 }
+

@@ -69,24 +69,7 @@ export default function LandingPage() {
             </Link>
           </motion.div>
 
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12 mt-16 md:mt-24 pt-12 border-t border-slate-100 w-full max-w-4xl px-4"
-          >
-            {[
-              { label: "Waste Reduction", val: "40%", icon: Trash2 },
-              { label: "Community", val: "5000+", icon: Users },
-              { label: "Direct Access", val: "Zero App", icon: Monitor },
-            ].map((stat, i) => (
-              <div key={i} className="flex flex-col items-center">
-                <stat.icon className="text-primary-dark opacity-30 mb-3" size={20} />
-                <span className="text-3xl md:text-4xl font-black text-slate-900 italic tracking-tighter">{stat.val}</span>
-                <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-slate-400 mt-1">{stat.label}</span>
-              </div>
-            ))}
-          </motion.div>
+
         </div>
       </section>
 

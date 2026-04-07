@@ -18,7 +18,9 @@ import {
     Play,
     Utensils,
     Calendar,
-    Activity
+    Activity,
+    ShoppingCart,
+    RefreshCcw
 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -29,6 +31,8 @@ export default function Sidebar() {
 
     const studentNav = [
         { name: "Dashboard", icon: Home, path: "/demo/student" },
+        { name: "Meal Wallet", icon: Calendar, path: "/demo/student/wallet" },
+        { name: "Marketplace", icon: ShoppingCart, path: "/demo/student/marketplace" },
         { name: "Menu Preference", icon: Utensils, path: "/demo/student/menu" },
         { name: "Feedback", icon: MessageCircle, path: "/demo/student/feedback" },
         { name: "Waste Stats", icon: BarChart2, path: "/demo/student/stats" },
@@ -36,10 +40,11 @@ export default function Sidebar() {
 
     const adminNav = [
         { name: "Overview", icon: ShieldCheck, path: "/demo/admin" },
+        { name: "Credit Operations", icon: RefreshCcw, path: "/demo/admin/credits" },
         { name: "Meal Insights", icon: Activity, path: "/demo/admin/insights" },
         { name: "Waste Analytics", icon: BarChart2, path: "/demo/admin/analytics" },
         { name: "Peak Times", icon: Clock, path: "/demo/admin/peak-times" },
-        { name: "Preparation", icon: Zap, path: "/demo/admin/preparation" },
+        { name: "Preparation", icon: Zap, path: "/demo/admin/prepare" },
         { name: "Engagement", icon: Users, path: "/demo/admin/engagement" },
         { name: "Reports", icon: FileText, path: "/demo/admin/reports" },
     ];

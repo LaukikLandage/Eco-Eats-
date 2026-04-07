@@ -25,6 +25,9 @@ export default function DemoLayout({
         if (path.includes('preparation')) return "Prep Optimization";
         if (path.includes('engagement')) return "Student Engagement";
         if (path.includes('reports')) return "University Reports";
+        if (path.includes('wallet')) return "Meal Wallet";
+        if (path.includes('marketplace')) return "Marketplace";
+        if (path.includes('admin/credits')) return "Credit Operations";
         return isStudent ? "Eco Hub" : "University Overview";
     };
 

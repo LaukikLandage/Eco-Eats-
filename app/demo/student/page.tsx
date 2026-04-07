@@ -64,21 +64,55 @@ export default function StudentDashboard() {
                 </div>
             </motion.div>
 
-            {/* Real-time Insights Section */}
+            {/* Next Meal & Wallet Insights Section */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Wallet Quick Insight */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="bg-white p-8 rounded-[3rem] border border-slate-100 shadow-sm flex items-center justify-between group hover:border-primary transition-all overflow-hidden relative"
+                    className="bg-slate-900 p-8 rounded-[3.5rem] border border-slate-800 shadow-2xl flex flex-col justify-between group hover:scale-[1.02] transition-all overflow-hidden relative"
+                >
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-[40px] -mr-16 -mt-16" />
+                    <div className="flex items-center justify-between relative z-10">
+                        <div className="flex items-center gap-5 text-white">
+                            <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-primary group-hover:rotate-12 transition-transform shadow-inner">
+                                <CreditCard size={28} />
+                            </div>
+                            <div>
+                                <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400">Meal Assets</h4>
+                                <p className="text-3xl font-black italic tracking-tighter text-white uppercase leading-none mt-1">42 <span className="text-sm text-slate-500 font-bold tracking-normal italic uppercase">Remaining</span></p>
+                            </div>
+                        </div>
+                        <Link href="/demo/student/wallet" className="w-10 h-10 bg-primary/10 text-primary rounded-full flex items-center justify-center hover:bg-primary hover:text-slate-900 transition-all border border-primary/20 shadow-lg shadow-primary/5">
+                             <ArrowRight size={18} />
+                        </Link>
+                    </div>
+                    <div className="flex items-center gap-2 mt-8">
+                        <div className="h-1.5 flex-1 bg-white/5 rounded-full overflow-hidden">
+                            <motion.div 
+                                initial={{ width: 0 }}
+                                animate={{ width: "70%" }}
+                                className="h-full bg-primary" 
+                            />
+                        </div>
+                        <span className="text-[9px] font-black text-slate-500 uppercase tracking-widest italic">70% Left</span>
+                    </div>
+                </motion.div>
+
+                {/* Live Rush Indicator */}
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="bg-white p-8 rounded-[3.5rem] border border-slate-100 shadow-sm flex items-center justify-between group hover:border-primary transition-all overflow-hidden relative"
                 >
                     <div className="flex items-center gap-6 relative z-10">
-                        <div className="w-16 h-16 bg-primary/10 rounded-[1.5rem] flex items-center justify-center text-primary-dark group-hover:rotate-12 transition-transform">
+                        <div className="w-16 h-16 bg-primary/10 rounded-[1.5rem] flex items-center justify-center text-primary-dark group-hover:rotate-12 transition-transform shadow-sm">
                              <Clock size={32} />
                         </div>
                         <div>
                              <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400">Live Rush Indicator</h4>
                              <div className="flex items-center gap-2 mt-2">
-                                 <span className="w-3 h-3 bg-red-500 rounded-full animate-pulse" />
+                                 <span className="w-3 h-3 bg-red-500 rounded-full animate-pulse shadow-lg shadow-red-500/20" />
                                  <span className="text-xl font-black text-slate-900 uppercase italic tracking-tighter">High Rush</span>
                              </div>
                         </div>
@@ -88,27 +122,8 @@ export default function StudentDashboard() {
                          <p className="text-xl font-black text-red-500 italic uppercase mt-1">12 Mins</p>
                     </div>
                 </motion.div>
-
-                {/* Optional Second Insight - Contribution Stats shortcut */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="bg-primary p-8 rounded-[3rem] border border-primary/20 shadow-xl shadow-primary/10 flex items-center justify-between group hover:scale-[1.02] transition-all overflow-hidden"
-                >
-                    <div className="flex items-center gap-6 relative z-10 text-slate-900">
-                        <div className="w-16 h-16 bg-white/20 rounded-[1.5rem] flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform">
-                             <BarChart2 size={32} />
-                        </div>
-                        <div>
-                             <h4 className="text-[10px] font-black uppercase tracking-widest opacity-60">Prep Accuracy</h4>
-                             <p className="text-2xl font-black italic tracking-tighter uppercase leading-none mt-1">98% Sync</p>
-                        </div>
-                    </div>
-                    <Link href="/demo/student/stats" className="w-12 h-12 bg-slate-900 text-white rounded-full flex items-center justify-center hover:bg-slate-800 transition-colors shadow-lg">
-                         <ChevronRight size={24} />
-                    </Link>
-                </motion.div>
             </div>
+
 
             {/* Feature Grid */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
