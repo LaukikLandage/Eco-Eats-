@@ -64,18 +64,6 @@ export default function Sidebar() {
                     </div>
                     <span className="text-2xl font-black font-heading text-slate-900 tracking-tighter italic">EcoEats</span>
                 </Link>
-
-                {/* Role Badge - Matches Inverted Design Specs */}
-                <div className={`mt-8 flex items-center justify-center gap-2 px-6 py-2.5 rounded-full shadow-lg transition-all ${
-                    isStudent 
-                    ? "bg-primary text-slate-900 shadow-primary/20" 
-                    : "bg-white border border-slate-100 text-slate-900 shadow-slate-200/50"
-                }`}>
-                    <Play size={10} fill="currentColor" className={isStudent ? "text-slate-900" : "text-primary"} />
-                    <span className="text-[10px] font-black uppercase tracking-[0.2em] whitespace-nowrap">
-                        {isStudent ? "Student Demo" : "University Admin"}
-                    </span>
-                </div>
             </div>
 
             {/* Navigation */}
