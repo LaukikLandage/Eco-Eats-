@@ -1,0 +1,145 @@
+﻿node.exe : ΓÜá `eslint` 
+configuration in 
+next.config.ts is no 
+longer supported. See 
+more info here: https://ne
+xtjs.org/docs/app/api-refe
+rence/cli/next#next-lint-o
+ptions
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo        
+      : NotSpecified: (Γ  
+  Üá `eslint` co...xt-l   
+ int-options:String) [    
+], RemoteException
+    + FullyQualifiedError 
+   Id : NativeCommandErr  
+  or
+ 
+ΓÜá Invalid 
+next.config.ts options 
+detected: 
+ΓÜá     Unrecognized 
+key(s) in object: 'eslint'
+ΓÜá See more info here: ht
+tps://nextjs.org/docs/mess
+ages/invalid-next-config
+Γû▓ Next.js 16.1.6 (Turbopack)
+- Environments: .env
+
+  Creating an optimized production build ...
+Γ£ô Compiled successfully in 4.9s
+  Skipping validation of types
+  Collecting page data using 11 workers ...
+Error [PrismaClientConstru
+ctorValidationError]: 
+Unknown property 
+datasourceUrl provided to 
+PrismaClient constructor.
+Read more at https://pris.
+ly/d/client-constructor
+    at module evaluation (
+C:\Users\Prince\Desktop\Ec
+oeats\.next\server\chunks\
+[root-of-the-server]__ca1d
+0464._.js:1:1042)
+    at instantiateModule (
+C:\Users\Prince\Desktop\Ec
+oeats\.next\server\chunks\
+[turbopack]_runtime.js:740
+:9)
+    at getOrInstantiateMod
+uleFromParent (C:\Users\Pr
+ince\Desktop\Ecoeats\.next
+\server\chunks\[turbopack]
+_runtime.js:763:12)
+    at Context.esmImport 
+[as i] (C:\Users\Prince\De
+sktop\Ecoeats\.next\server
+\chunks\[turbopack]_runtim
+e.js:228:20)
+    at module evaluation (
+C:\Users\Prince\Desktop\Ec
+oeats\.next\server\chunks\
+[root-of-the-server]__ca1d
+0464._.js:1:1432)
+    at instantiateModule (
+C:\Users\Prince\Desktop\Ec
+oeats\.next\server\chunks\
+[turbopack]_runtime.js:740
+:9)
+    at 
+instantiateRuntimeModule (
+C:\Users\Prince\Desktop\Ec
+oeats\.next\server\chunks\
+[turbopack]_runtime.js:768
+:12)
+    at getOrInstantiateRun
+timeModule (C:\Users\Princ
+e\Desktop\Ecoeats\.next\se
+rver\chunks\[turbopack]_ru
+ntime.js:781:12)
+Error [PrismaClientConstru
+ctorValidationError]: 
+Unknown property 
+datasourceUrl provided to 
+PrismaClient constructor.
+Read more at https://pris.
+ly/d/client-constructor
+    at module evaluation (
+C:\Users\Prince\Desktop\Ec
+oeats\.next\server\chunks\
+[root-of-the-server]__4428
+0b8d._.js:1:1042)
+    at instantiateModule (
+C:\Users\Prince\Desktop\Ec
+oeats\.next\server\chunks\
+[turbopack]_runtime.js:740
+:9)
+    at getOrInstantiateMod
+uleFromParent (C:\Users\Pr
+ince\Desktop\Ecoeats\.next
+\server\chunks\[turbopack]
+_runtime.js:763:12)
+    at Context.esmImport 
+[as i] (C:\Users\Prince\De
+sktop\Ecoeats\.next\server
+\chunks\[turbopack]_runtim
+e.js:228:20)
+    at module evaluation (
+C:\Users\Prince\Desktop\Ec
+oeats\.next\server\chunks\
+[root-of-the-server]__4428
+0b8d._.js:1:1550)
+    at instantiateModule (
+C:\Users\Prince\Desktop\Ec
+oeats\.next\server\chunks\
+[turbopack]_runtime.js:740
+:9)
+    at 
+instantiateRuntimeModule (
+C:\Users\Prince\Desktop\Ec
+oeats\.next\server\chunks\
+[turbopack]_runtime.js:768
+:12)
+    at getOrInstantiateRun
+timeModule (C:\Users\Princ
+e\Desktop\Ecoeats\.next\se
+rver\chunks\[turbopack]_ru
+ntime.js:781:12)
+
+> Build error occurred
+Error: Failed to collect 
+page data for 
+/api/meal-credits/buy
+    at ignore-listed 
+frames {
+  type: 'Error'
+}
